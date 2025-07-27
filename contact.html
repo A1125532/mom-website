@@ -5,164 +5,171 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>陳情表單 - 陳雅惠議員服務團隊</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 2em;
-      max-width: 600px;
-      margin: auto;
-      background-color: #f9f9f9;
+    body{
+      font-family:Arial, sans-serif;
+      padding:2em;
+      max-width:600px;
+      margin:auto;
+      background:#f9f9f9;
     }
-    h1 { text-align: center; }
-    form {
-      background: #fff;
-      padding: 1.5em;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,.1);
+    h1{text-align:center;}
+    form{
+      background:#fff;
+      padding:1.5em;
+      border-radius:10px;
+      box-shadow:0 0 10px rgba(0,0,0,.1);
     }
-    label { display: block; margin-top: 1em; font-weight: bold; }
-    input, textarea, select {
-      width: 100%;
-      padding: .6em;
-      margin-top: .3em;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+    label{display:block;margin-top:1em;font-weight:bold;}
+    input,textarea,select{
+      width:100%;
+      padding:.6em;
+      margin-top:.3em;
+      border:1px solid #ccc;
+      border-radius:5px;
     }
-    button {
-      margin-top: 1.5em;
-      padding: .8em;
-      background: #00993d;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      width: 100%;
-      font-size: 1em;
+    button{
+      margin-top:1.5em;
+      padding:.8em;
+      background:#00993d;
+      color:#fff;
+      border:none;
+      border-radius:5px;
+      width:100%;
+      font-size:1em;
     }
-    footer {
-      text-align: center;
-      margin-top: 2em;
-      color: #777;
-      font-size: .9em;
+    footer{
+      text-align:center;
+      margin-top:2em;
+      color:#777;
+      font-size:.9em;
     }
   </style>
 </head>
 <body>
 
-  <h1>📬 陳情表單</h1>
-  <p style="text-align:center;">請留下您的聯絡資訊與需求，我們將於 3 日內（不含節假日）回覆您收件狀況<br>
-  您可於首頁點選「案件進度查詢」查看案件進度</p>
+<h1>📬 陳情表單</h1>
+<p style="text-align:center;">
+  請留下您的聯絡資訊與需求，我們將於 3 日內（不含節假日）回覆您收件狀況<br>
+  您可於首頁點選「案件進度查詢」查看案件進度
+</p>
 
-  <!-- ⚠ 注意事項 -->
-  <section style="background:#fff0f0;border:1px solid #ffcccc;padding:1em;margin-bottom:2em;">
-    <h3 style="color:#cc0000;text-align:left;">⚠ 注意事項</h3>
-    <ol style="padding-left:1.2em;text-align:left;">
-      <li>『*』欄位務必輸入。為避免資料遺失，建議先在記事本或 Word 撰寫，再複製填入。</li>
-      <li>檢舉人基本資料將採保密方式處理，但因業務需要，承辦機關得調閱陳情人基本資料以供處理。</li>
-      <li>為確保他人權益，陳情或檢舉案件，應內容具體或明確列舉事證，否則將不予處理或不予受理。</li>
-      <li>陳情案件以真實案件為限，與市政無關之建議、情緒批評、惡意攻擊、謾罵等，恕不服務。</li>
-      <li style="color:#cc0000;"><strong>經查證所留姓名或住址、聯絡電話、電子郵件位址屬偽冒、匿名虛報不實者，得不予處理。</strong></li>
-    </ol>
-  </section>
+<!-- ⚠ 注意事項 -->
+<section style="background:#fff0f0;border:1px solid #ffcccc;padding:1em;margin-bottom:2em;">
+  <h3 style="color:#cc0000;text-align:left;">⚠ 注意事項</h3>
+  <ol style="padding-left:1.2em;text-align:left;">
+    <li>『*』欄位務必輸入。為避免資料遺失，建議先在記事本或 Word 撰寫，再複製填入。</li>
+    <li>檢舉人基本資料將採保密方式處理，但因業務需要，承辦機關得調閱陳情人基本資料以供處理。</li>
+    <li>為確保他人權益，陳情或檢舉案件，應內容具體或明確列舉事證，否則將不予處理或不予受理。</li>
+    <li>陳情案件以真實案件為限，與市政無關之建議、情緒批評、惡意攻擊、謾罵等，恕不服務。</li>
+    <li style="color:#cc0000;"><strong>經查證所留姓名或住址、聯絡電話、電子郵件位址屬偽冒、匿名虛報不實者，得不予處理。</strong></li>
+  </ol>
+</section>
 
-  <!-- ✅ 表單開始 -->
-  <form id="petitionForm" enctype="multipart/form-data">
-    <input type="hidden" name="案件編號" id="caseIdInput">
+<!-- ✅ 表單開始 -->
+<form id="petitionForm">
+  <input type="hidden" name="案件編號" id="caseIdInput">
 
-    <label for="name">姓名 *</label>
-    <input type="text" id="name" name="姓名" required>
+  <label for="name">姓名 *</label>
+  <input type="text" id="name" name="姓名" required>
 
-    <label for="phone">聯絡電話 *</label>
-    <input type="tel" id="phone" name="電話" required>
+  <label for="phone">聯絡電話 *</label>
+  <input type="tel" id="phone" name="電話" required>
 
-    <label for="mailing">通訊地址 *</label>
-    <input type="text" id="mailing" name="通訊地址" required>
+  <label for="mailing">通訊地址 *</label>
+  <input type="text" id="mailing" name="通訊地址" required>
 
-    <label for="email">電子信箱 *</label>
-    <input type="email" id="email" name="電子信箱" required>
+  <label for="email">電子信箱 *</label>
+  <input type="email" id="email" name="電子信箱" required>
 
-    <label for="region">案件發生行政區 *</label>
-    <select id="region" name="行政區" required>
-      <option value="">請選擇</option>
-      <option value="東區">東區</option>
-      <option value="南區">南區</option>
-      <option value="跨區">跨區</option>
-      <option value="不明">不明</option>
-    </select>
+  <label for="region">案件發生行政區 *</label>
+  <select id="region" name="行政區" required>
+    <option value="">請選擇</option>
+    <option value="東區">東區</option>
+    <option value="南區">南區</option>
+    <option value="跨區">跨區</option>
+    <option value="不明">不明</option>
+  </select>
 
-    <label for="address">案件發生地址 *</label>
-    <input type="text" id="address" name="詳細地址" required>
+  <label for="address">案件發生地址 *</label>
+  <input type="text" id="address" name="詳細地址" required>
 
-    <label for="landmark">地標（如：XX便利商店旁、XX市場對面）（選填）</label>
-    <input type="text" id="landmark" name="地標">
+  <label for="landmark">地標（如：XX便利商店旁、XX市場對面）（選填）</label>
+  <input type="text" id="landmark" name="地標">
 
-    <label for="message">陳情內容 *</label>
-    <textarea id="message" name="陳情內容" rows="6" required></textarea>
+  <label for="message">陳情內容 *</label>
+  <textarea id="message" name="陳情內容" rows="6" required></textarea>
 
-    <label for="note">補充說明（選填）</label>
-    <textarea id="note" name="補充說明" rows="4"></textarea>
+  <label for="note">補充說明（選填）</label>
+  <textarea id="note" name="補充說明" rows="4"></textarea>
 
-    <!-- ⬇ 改成 Formspree 預設欄位名稱 file -->
-    <label for="file">相關附件（單一檔案，上限 10 MB）（選填）</label>
-    <input type="file" id="file" name="file">
+  <!-- 📝 附件說明文字 -->
+  <label style="margin-top:1em;">相關附件</label>
+  <p style="margin-top:.3em;font-size:.9em;color:#555;">
+    若需要附加檔案，請在收到載有「案件編號」的確認郵件後，<br>
+    直接回覆該封 Gmail 並附上檔案，我們將協助歸檔處理。
+  </p>
 
-    <div style="margin-top: 1em; display: flex; align-items: center;">
-      <label for="agree" style="display: flex; align-items: center;">
-        <input type="checkbox" id="agree" required style="margin-right: 0.5em;" />
-        <span style="white-space: nowrap;">我同意個資僅用於處理本次陳情</span>
-      </label>
-    </div>
+  <div style="margin-top:1em;display:flex;align-items:center;">
+    <label for="agree" style="display:flex;align-items:center;">
+      <input type="checkbox" id="agree" required style="margin-right:.5em;">
+      <span style="white-space:nowrap;">我同意個資僅用於處理本次陳情</span>
+    </label>
+  </div>
 
-    <button type="submit">送出表單</button>
-  </form>
+  <button type="submit">送出表單</button>
+</form>
 
-  <footer>
-    © 2025 陳雅惠議員服務團隊｜聯絡電話：04‑2282‑4639
-  </footer>
+<footer>
+  © 2025 陳雅惠議員服務團隊｜聯絡電話：04‑2282‑4639
+</footer>
 
-  <!-- ✅ JS：Sheets + Formspree + 跳轉 -->
-  <script>
-  document.getElementById("petitionForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
+<script>
+document.getElementById("petitionForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    const form = e.target;
-    const fd   = new FormData(form);
+  const form = e.target;
+  const fd   = new FormData(form);
 
-    /* 1️⃣ 產生案件編號並寫回表單 */
-    const caseId = "CID" + Math.random().toString(36).slice(2, 10).toUpperCase();
-    fd.set("案件編號", caseId);
-    document.getElementById("caseIdInput").value = caseId;
+  /* 1️⃣ 產生案件編號：3 碼亂數 + 日期 (yyyymmdd) */
+  const rand  = Math.random().toString(36).slice(2, 5).toUpperCase();   // 3 碼亂數
+  const today = new Date().toISOString().slice(0,10).replace(/-/g,"");  // 20250727
+  const caseId = `${rand}-${today}`;                                    // 例：7ZQ-20250727
 
-    /* 2️⃣ 非同步寫入 Google Sheets（不等回應） */
-    const gsFd = new FormData();
-    gsFd.append("案件編號", caseId);
-    gsFd.append("電子信箱", form.email.value);
-    gsFd.append("案件狀態", "已收件");
-    gsFd.append("備註", "無");
+  fd.set("案件編號", caseId);
+  document.getElementById("caseIdInput").value = caseId;
 
-    fetch("https://script.google.com/macros/s/AKfycbz4TUYV8xSV2cTCTnUR9yiofZkObZ-HCSUx0MfyXnhMysmic71NRPyZUpwVI8kHsQfn/exec", {
-      method: "POST",
-      mode:   "no-cors",   // 不必等待回應
-      body:   gsFd
+  /* 2️⃣ 背景寫入 Google Sheets */
+  const gsFd = new FormData();
+  gsFd.append("案件編號", caseId);
+  gsFd.append("電子信箱", form.email.value);
+  gsFd.append("案件狀態", "已收件");
+  gsFd.append("備註", "無");
+
+  fetch("https://script.google.com/macros/s/AKfycbz4TUYV8xSV2cTCTnUR9yiofZkObZ-HCSUx0MfyXnhMysmic71NRPyZUpwVI8kHsQfn/exec", {
+    method:"POST",
+    mode  :"no-cors",
+    body  :gsFd
+  });
+
+  /* 3️⃣ 寄出 email，成功才跳轉 thankyou.html */
+  try{
+    const rsp = await fetch("https://script.google.com/macros/s/AKfycbzJPrDM54dgvWlA9Ir3w7XfiCbkjmj2kciuEYd6MXF9fn213heANqXznIsUWSeDKRl1/exec",{
+      method:"POST",
+      body:fd
     });
 
-    /* 3️⃣ 等 Formspree 寄信完成再跳轉 */
-    try {
-      const rsp = await fetch("https://formspree.io/f/mdkdgrzy", {
-        method:  "POST",
-        headers: { "Accept": "application/json" },
-        body:    fd
-      });
-
-      if (rsp.ok) {
-        window.location.href = "thankyou.html?caseId=" + encodeURIComponent(caseId);
-      } else {
-        const err = await rsp.json().catch(() => ({}));
-        alert("送出失敗：" + (err.error || "請稍後再試"));
-      }
-    } catch (err) {
-      alert("送出失敗，請確認網路或稍後再試！");
-      console.error(err);
+    if(rsp.ok){
+      window.location.href = "thankyou.html?caseId=" + encodeURIComponent(caseId);
+    }else{
+      const err = await rsp.json().catch(()=>({}));
+      alert("送出失敗：" + (err.error || "請稍後再試"));
     }
-  });
-  </script>
+  }catch(err){
+    alert("送出失敗，請確認網路或稍後再試！");
+    console.error(err);
+  }
+});
+</script>
+
 </body>
 </html>
