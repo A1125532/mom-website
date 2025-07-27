@@ -1,0 +1,163 @@
+<!-- proposal.html -->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>政見建議表單 - 陳雅惠議員服務平台</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 2em;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00993d;
+    }
+
+    .slogan {
+      font-size: 1.2em;
+      text-align: center;
+      color: #444;
+      margin-top: -0.5em;
+      margin-bottom: 1.5em;
+      font-weight: bold;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    form {
+      background: #fff;
+      padding: 1.5em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 1em;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: .6em;
+      margin-top: .3em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 1.5em;
+      padding: 0.8em;
+      background: #00993d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: #007a30;
+      transform: scale(1.02);
+    }
+
+    .sending-text {
+      text-align: center;
+      color: #666;
+      font-weight: bold;
+      margin-top: 1em;
+      display: none;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2em;
+      color: #777;
+      font-size: .9em;
+    }
+  </style>
+</head>
+<body>
+
+<h1>💡 政見建議表單</h1>
+<p class="slogan">政策一起想，城市一起改。</p>
+<p style="text-align:center;">
+  歡迎您提供建設性建議，讓議員能更貼近民意，在議會提出具體政策。
+</p>
+
+<form id="proposalForm">
+  <label for="name">姓名 *</label>
+  <input type="text" id="name" name="姓名" required>
+
+  <label for="gender">性別 *</label>
+  <select id="gender" name="性別" required>
+    <option value="">請選擇</option>
+    <option value="男士">男士</option>
+    <option value="女士">女士</option>
+  </select>
+
+  <label for="phone">聯絡電話 *</label>
+  <input type="tel" id="phone" name="電話" required>
+
+  <label for="email">電子信箱 *</label>
+  <input type="email" id="email" name="電子信箱" required>
+
+  <label for="content">具體建議內容 *</label>
+  <textarea id="content" name="建議內容" rows="6" required></textarea>
+
+  <button type="submit">送出建議</button>
+</form>
+
+<p class="sending-text" id="sendingText">寄件中，請稍等...</p>
+
+<footer>
+  © 陳雅惠議員服務團隊<br>
+  服務處地址：台中市南區正義街236號<br>
+  聯絡電話：04-2282-4639
+</footer>
+
+<script>
+document.getElementById("proposalForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const form = e.target;
+  const fd = new FormData(form);
+  const sendingText = document.getElementById("sendingText");
+  sendingText.style.display = "block"; // 顯示提示文字
+
+  try {
+    const rsp = await fetch("https://script.google.com/macros/s/AKfycbzWfelsZDB068LoMUrvOXLqmdCy3sVS7OGEfRYwtWXc0SVjaLD__WySlcNsInxSFHrEHg/exec", {
+      method: "POST",
+      body: fd
+    });
+
+    if (rsp.ok) {
+      window.location.href = "thankyou-proposal.html";
+    } else {
+      const err = await rsp.json().catch(() => ({}));
+      alert("送出失敗：" + (err.error || "請稍後再試"));
+      sendingText.style.display = "none";
+    }
+  } catch (err) {
+    alert("送出失敗，請確認網路或稍後再試！");
+    sendingText.style.display = "none";
+    console.error(err);
+  }
+});
+</script>
+
+</body>
+</html>
