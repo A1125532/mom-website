@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>送出成功 - 陳情表單</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      padding: 2em;
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+    .thankyou-box {
+      background-color: white;
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .case-id {
+      margin-top: 1.5em;
+      font-size: 1.2em;
+      color: #cc0092;
+      word-break: break-all;
+    }
+    a {
+      display: inline-block;
+      margin-top: 1.5em;
+      text-decoration: none;
+      color: #00993d;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      margin-top: 2em;
+      color: #777;
+      font-size: .9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="thankyou-box">
+    <h1>🎉 表單已成功送出！</h1>
+    <p>感謝您的陳情，我們已收到資料。</p>
+    <p>以下是您的案件編號：</p>
+    <div class="case-id" id="caseId">載入中...</div>
+    <div class="note">
+      請妥善保存此編號，可用於查詢案件進度。<br>
+      如有任何問題，歡迎聯絡服務處。
+    </div>
+    <a href="index.html">返回首頁</a>
+  </div>
+
+  <footer>
+    © 2025 陳雅惠議員服務團隊｜聯絡電話：04‑2282‑4639
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const caseId = params.get("caseId");
+    document.getElementById("caseId").textContent = caseId ? caseId : "（未取得案件編號）";
+  </script>
+</body>
+</html>
