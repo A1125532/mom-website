@@ -19,9 +19,12 @@
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+    /* 🆕 案件編號：更大、更粗，並與下方說明拉出間距 */
     .case-id {
       margin-top: 1.5em;
-      font-size: 1.2em;
+      margin-bottom: 1em;  /* 與說明文字留白 */
+      font-size: 2rem;     /* 原 1.2em → 2rem 更醒目 */
+      font-weight: 700;    /* 加粗 */
       color: #cc0092;
       word-break: break-all;
     }
@@ -47,7 +50,7 @@
     <p>以下是您的案件編號：</p>
     <div class="case-id" id="caseId">載入中...</div>
     <div class="note">
-      請妥善保存此編號，可用於查詢案件進度。<br>
+      此編號已寄去您的信箱，可用於查詢案件進度。<br>
       如有任何問題，歡迎聯絡服務處。
     </div>
     <a href="index.html">返回首頁</a>
