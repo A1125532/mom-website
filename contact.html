@@ -1,3 +1,4 @@
+<!-- contact.html -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -12,7 +13,7 @@
       margin:auto;
       background:#f9f9f9;
     }
-    h1{text-align:center;}
+    h1{text-align: center; color: #00993d;}
     form{
       background:#fff;
       padding:1.5em;
@@ -27,15 +28,33 @@
       border:1px solid #ccc;
       border-radius:5px;
     }
-    button{
-      margin-top:1.5em;
-      padding:.8em;
-      background:#00993d;
-      color:#fff;
-      border:none;
-      border-radius:5px;
-      width:100%;
-      font-size:1em;
+    button {
+      margin-top: 1.5em;
+      padding: 0.8em;
+      background: #00993d;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    button:hover {
+      background: #007a30;
+      transform: scale(1.02);
+    }
+    .sending-text {
+      text-align: center;
+      color: #666;
+      font-weight: bold;
+      margin-top: 1em;
+      display: none;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
     footer{
       text-align:center;
@@ -49,28 +68,42 @@
 
 <h1>📬 陳情表單</h1>
 <p style="text-align:center;">
-  請留下您的聯絡資訊與需求，我們將於 3 日內（不含節假日）回覆您收件狀況<br>
-  您可於首頁點選「案件進度查詢」查看案件進度
+  請留下您的聯絡資訊與需求<br>
+  您可於首頁點選「🔍 案件進度查詢」查看案件進度
 </p>
 
-<!-- ⚠ 注意事項 -->
-<section style="background:#fff0f0;border:1px solid #ffcccc;padding:1em;margin-bottom:2em;">
-  <h3 style="color:#cc0000;text-align:left;">⚠ 注意事項</h3>
-  <ol style="padding-left:1.2em;text-align:left;">
-    <li>『*』欄位務必輸入。為避免資料遺失，建議先在記事本或 Word 撰寫，再複製填入。</li>
-    <li>檢舉人基本資料將採保密方式處理，但因業務需要，承辦機關得調閱陳情人基本資料以供處理。</li>
-    <li>為確保他人權益，陳情或檢舉案件，應內容具體或明確列舉事證，否則將不予處理或不予受理。</li>
-    <li>陳情案件以真實案件為限，與市政無關之建議、情緒批評、惡意攻擊、謾罵等，恕不服務。</li>
-    <li style="color:#cc0000;"><strong>經查證所留姓名或住址、聯絡電話、電子郵件位址屬偽冒、匿名虛報不實者，得不予處理。</strong></li>
-  </ol>
-</section>
-
-<!-- ✅ 表單開始 -->
 <form id="petitionForm">
-  <input type="hidden" name="案件編號" id="caseIdInput">
+  <!-- ⚠ 注意事項 -->
+  <section style="background:#fff0f0;border:1px solid #ffcccc;padding:1em;margin-bottom:2em;">
+    <h3 style="color:#cc0000;text-align:left;">⚠ 注意事項</h3>
+    <p style="margin-top:0.5em; margin-bottom:1em; color:#cc0000; font-weight:bold; font-size:1.17em; line-height:1.4;">
+      <strong>請您先詳讀下列使用說明後再登錄案件</strong>
+    </p>
+    <ol style="padding-left:1.2em;text-align:left;">
+      <li>『*』欄位務必輸入。為避免資料遺失，建議先在記事本或 Word 撰寫，再複製填入。</li>
+      <li>檢舉人基本資料將採保密方式處理，但因業務需要，承辦機關得調閱陳情人基本資料以供處理。</li>
+      <li>應內容具體列舉事證，否則將不予處理或不予受理。</li>
+      <li>與市政無關建議、謾罵、惡意攻擊將不服務。</li>
+      <li style="color:#cc0000;"><strong>若姓名、地址、聯絡資料虛報，得不予處理。</strong></li>
+    </ol>
+    <div style="margin-top:1em;display:flex;align-items:center;">
+      <label for="agree" style="display:flex;align-items:center;">
+        <input type="checkbox" id="agree" name="agree" required style="margin-right:.5em;">
+        <span style="white-space:nowrap;">我已閱讀注意事項並同意</span>
+      </label>
+    </div>
+  </section>
 
+  <input type="hidden" name="案件編號" id="caseIdInput">
   <label for="name">姓名 *</label>
   <input type="text" id="name" name="姓名" required>
+
+  <label for="gender">性別 *</label>
+  <select id="gender" name="性別" required>
+    <option value="">請選擇</option>
+    <option value="男士">男士</option>
+    <option value="女士">女士</option>
+  </select>
 
   <label for="phone">聯絡電話 *</label>
   <input type="tel" id="phone" name="電話" required>
@@ -93,7 +126,7 @@
   <label for="address">案件發生地址 *</label>
   <input type="text" id="address" name="詳細地址" required>
 
-  <label for="landmark">地標（如：XX便利商店旁、XX市場對面）（選填）</label>
+  <label for="landmark">地標（選填）</label>
   <input type="text" id="landmark" name="地標">
 
   <label for="message">陳情內容 *</label>
@@ -102,25 +135,21 @@
   <label for="note">補充說明（選填）</label>
   <textarea id="note" name="補充說明" rows="4"></textarea>
 
-  <!-- 📝 附件說明文字 -->
   <label style="margin-top:1em;">相關附件</label>
   <p style="margin-top:.3em;font-size:.9em;color:#555;">
     若需要附加檔案，請在收到載有「案件編號」的確認郵件後，<br>
     直接回覆該封 Gmail 並附上檔案，我們將協助歸檔處理。
   </p>
 
-  <div style="margin-top:1em;display:flex;align-items:center;">
-    <label for="agree" style="display:flex;align-items:center;">
-      <input type="checkbox" id="agree" required style="margin-right:.5em;">
-      <span style="white-space:nowrap;">我同意個資僅用於處理本次陳情</span>
-    </label>
-  </div>
-
   <button type="submit">送出表單</button>
 </form>
 
+<p class="sending-text" id="sendingText">寄件中，請稍等...</p>
+
 <footer>
-  © 2025 陳雅惠議員服務團隊｜聯絡電話：04‑2282‑4639
+  © 陳雅惠議員服務團隊<br>
+  服務處地址:台中市南區正義街236號<br>
+  聯絡電話：04-2282-4639
 </footer>
 
 <script>
@@ -129,16 +158,20 @@ document.getElementById("petitionForm").addEventListener("submit", async (e) => 
 
   const form = e.target;
   const fd   = new FormData(form);
+  const sendingText = document.getElementById("sendingText");
+  sendingText.style.display = "block"; // 顯示送出提示
 
-  /* 1️⃣ 產生案件編號：3 碼亂數 + 日期 (yyyymmdd) */
-  const rand  = Math.random().toString(36).slice(2, 5).toUpperCase();   // 3 碼亂數
-  const today = new Date().toISOString().slice(0,10).replace(/-/g,"");  // 20250727
-  const caseId = `${rand}-${today}`;                                    // 例：7ZQ-20250727
+  const rand  = Math.random().toString(36).slice(2, 5).toUpperCase();
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  const today = `${yyyy}${mm}${dd}`;
+  const caseId = `${rand}-${today}`;
 
   fd.set("案件編號", caseId);
   document.getElementById("caseIdInput").value = caseId;
 
-  /* 2️⃣ 背景寫入 Google Sheets */
   const gsFd = new FormData();
   gsFd.append("案件編號", caseId);
   gsFd.append("電子信箱", form.email.value);
@@ -147,25 +180,26 @@ document.getElementById("petitionForm").addEventListener("submit", async (e) => 
 
   fetch("https://script.google.com/macros/s/AKfycbz4TUYV8xSV2cTCTnUR9yiofZkObZ-HCSUx0MfyXnhMysmic71NRPyZUpwVI8kHsQfn/exec", {
     method:"POST",
-    mode  :"no-cors",
-    body  :gsFd
+    mode:"no-cors",
+    body:gsFd
   });
 
-  /* 3️⃣ 寄出 email，成功才跳轉 thankyou.html */
-  try{
-    const rsp = await fetch("https://script.google.com/macros/s/AKfycbzJPrDM54dgvWlA9Ir3w7XfiCbkjmj2kciuEYd6MXF9fn213heANqXznIsUWSeDKRl1/exec",{
+  try {
+    const rsp = await fetch("https://script.google.com/macros/s/AKfycbyF0S5i8CDlN1DS95gbx24SBAF-rNhdCpds_36MHTWe7jNS_KmUdB_b9O4o_C2nUuCR4A/exec", {
       method:"POST",
       body:fd
     });
 
-    if(rsp.ok){
+    if (rsp.ok) {
       window.location.href = "thankyou.html?caseId=" + encodeURIComponent(caseId);
-    }else{
-      const err = await rsp.json().catch(()=>({}));
+    } else {
+      const err = await rsp.json().catch(() => ({}));
       alert("送出失敗：" + (err.error || "請稍後再試"));
+      sendingText.style.display = "none";
     }
-  }catch(err){
+  } catch (err) {
     alert("送出失敗，請確認網路或稍後再試！");
+    sendingText.style.display = "none";
     console.error(err);
   }
 });
