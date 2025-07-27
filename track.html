@@ -1,3 +1,4 @@
+<!-- track.html -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -5,19 +6,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>案件進度查詢 - 陳雅惠議員服務平台</title>
   <style>
-    body{font-family:Arial,sans-serif;background:#f9f9f9;max-width:600px;margin:auto;padding:2em;}
-    h1{text-align:center;color:#00993d;}
-    form{background:#fff;padding:1.5em;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,.1);}
-    label{display:block;margin-top:1em;font-weight:bold;}
-    input{width:100%;padding:.6em;margin-top:.3em;border:1px solid #ccc;border-radius:5px;}
-    button{margin-top:1.5em;padding:.8em;background:#00993d;color:#fff;border:none;border-radius:5px;width:100%;font-size:1em;}
-    .result{margin-top:1.5em;padding:1em;background:#e8f4ff;border:1px solid #a6c8ff;border-radius:5px;display:none;}
-    footer{text-align:center;margin-top:2em;color:#777;font-size:.9em;}
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      max-width: 600px;
+      margin: auto;
+      padding: 2em;
+    }
+    h1 {
+      text-align: center;
+      color: #00993d;
+    }
+    form {
+      background: #fff;
+      padding: 1.5em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,.1);
+    }
+    label {
+      display: block;
+      margin-top: 1em;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: .6em;
+      margin-top: .3em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* 共用按鈕樣式 */
+    .action-button {
+      flex: 1;
+      text-align: center;
+      padding: 0.8em;
+      background: #00993d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+    .action-button:hover {
+      background: #007a30;
+      transform: scale(1.02);
+    }
+
+    .result {
+      margin-top: 1.5em;
+      padding: 1em;
+      background: #e8f4ff;
+      border: 1px solid #a6c8ff;
+      border-radius: 5px;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2em;
+      color: #777;
+      font-size: .9em;
+    }
   </style>
 </head>
 <body>
 
-<h1>📄 案件進度查詢</h1>
+<h1>🔍 案件進度查詢</h1>
 <p style="text-align:center;">請輸入您填寫表單時的電子信箱與案件編號</p>
 
 <form id="trackForm" onsubmit="handleSearch(event)">
@@ -27,7 +85,10 @@
   <label for="caseid">案件編號</label>
   <input type="text" id="caseid" required />
 
-  <button type="submit">查詢案件</button>
+  <div style="display: flex; gap: 1em; margin-top: 1.5em;">
+    <button type="submit" class="action-button">🔍 查詢案件</button>
+    <a href="index.html" class="action-button">🏠 回首頁</a>
+  </div>
 </form>
 
 <div id="result" class="result">
@@ -36,17 +97,17 @@
 </div>
 
 <footer>
-  © 2025 陳雅惠議員服務團隊｜聯絡電話：04‑2282‑4639
+  © 陳雅惠議員服務團隊<br>
+  服務處地址：台中市南區正義街236號<br>
+  聯絡電話：04-2282-4639
 </footer>
 
 <script>
-/* 把字串：trim → 全形轉半形 → 小寫 */
 function normalize(str){
   if(!str) return '';
-  // 全形轉半形
   const s = str.trim().replace(/[！-～]/g,ch =>
     String.fromCharCode(ch.charCodeAt(0)-0xFEE0)
-  ).replace('　',' ');               // 全形空白
+  ).replace('　',' ');
   return s.toLowerCase();
 }
 
@@ -58,7 +119,7 @@ async function handleSearch(e){
   const box = document.getElementById('result');
   const txt = document.getElementById('resultText');
 
-  try{
+  try {
     const res  = await fetch('https://opensheet.elk.sh/1_mUxHK6iXozkkeyZ8YV82AUUe0BQe4uqc-blRuD6yhU/progress');
     const data = await res.json();
 
@@ -67,16 +128,16 @@ async function handleSearch(e){
       normalize(r['電子信箱']) === email
     );
 
-    if(row){
-      const note = (row['備註']||'').replaceAll('\\n','<br/>');
-      txt.innerHTML = `🔍 案件狀態：<strong>${row['案件狀態']}</strong><br/>📝 備註：${note||'—'}`;
-    }else{
+    if (row) {
+      const note = (row['備註'] || '').replaceAll('\\n','<br/>');
+      txt.innerHTML = `🔍 案件狀態：<strong>${row['案件狀態']}</strong><br/>📝 備註：${note || '—'}`;
+    } else {
       txt.innerHTML = '<span style="color:red;">查無此案件，請確認輸入正確（請使用半形英數）。</span>';
     }
-    box.style.display='block';
-  }catch(err){
+    box.style.display = 'block';
+  } catch (err) {
     txt.innerHTML = '<span style="color:red;">無法讀取資料，請稍後再試。</span>';
-    box.style.display='block';
+    box.style.display = 'block';
   }
 }
 </script>
