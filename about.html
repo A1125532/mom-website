@@ -152,7 +152,9 @@
       color: #00993d;
       font-weight: bold;
       margin-right: 8px;
-      font-family: inherit; /* 可強制不套 emoji */
+      font-family: 'Arial', sans-serif;  /* 強制用非 emoji 字型顯示 */
+      position: absolute;
+      left: 0;
     }
 
     .policy-section li {
@@ -166,26 +168,27 @@
     }
 
     .custom-list {
-  list-style: none;
-  color: #333;
-  font-size: 1.05em;
-  line-height: 1.8;
-  padding-left: 1.2em;
-}
+      list-style: none;
+      color: #333;
+      font-size: 1.05em;
+      line-height: 1.8;
+      padding-left: 1.2em;
+    }
 
-.custom-list li {
-  position: relative;
-  padding-left: 1.5em;
-  margin-bottom: 0.6em;
-}
+   .custom-list li {
+      position: relative;
+      padding-left: 1.5em;
+      margin-bottom: 0.6em;
+    }
 
-.custom-list li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  color: #00993d;
-  font-weight: bold;
-}
+   .custom-list li::before {
+      content: "\2714";
+      position: absolute;
+      left: 0;
+      color: #00993d;
+      font-weight: bold;
+      font-family: 'Arial', sans-serif;  /* 防止變成 emoji */
+    }
 
     footer {
       background: #333;
