@@ -147,10 +147,12 @@
     }
 
     .policy-section li::before {
-      content: "✔";
+      content: "\2714";  /* Unicode for ✔ */
+      /*content: "✔";*/
       color: #00993d;
       font-weight: bold;
       margin-right: 8px;
+      font-family: inherit; /* 可強制不套 emoji */
     }
 
     .policy-section li {
