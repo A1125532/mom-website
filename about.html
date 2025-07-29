@@ -1,3 +1,4 @@
+<!-- about.html -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -83,10 +84,34 @@
       line-height: 1.8;
       color: #333;
       font-size: 1.05em;
+      list-style: none;
     }
 
-    .policy-section li {
+    .policy-section li,
+    .custom-list li {
+      position: relative;
+      padding-left: 1.5em;
       margin-bottom: 0.6em;
+    }
+
+    .policy-section li::before,
+    .custom-list li::before {
+      content: "\2714";  /* Unicode ✔ */
+      color: #00993d;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      position: absolute;
+      left: 0;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .custom-list {
+      list-style: none;
+      color: #333;
+      font-size: 1.05em;
+      line-height: 1.8;
+      padding-left: 1.2em;
     }
 
     .link-wrapper {
@@ -140,54 +165,6 @@
       font-size: 1em;
       font-weight: bold;
       color: #333;
-    }
-
-    .policy-section ul {
-      list-style: none;  /* 移除原本的點點 */
-    }
-
-    .policy-section li::before {
-      content: "\2714";  /* Unicode for ✔ */
-      /*content: "✔";*/
-      color: #00993d;
-      font-weight: bold;
-      margin-right: 8px;
-      font-family: 'Arial', sans-serif;  /* 強制用非 emoji 字型顯示 */
-      position: absolute;
-      left: 0;
-    }
-
-    .policy-section li {
-      position: relative;
-      padding-left: 1.5em;  /* 給勾勾一點空間，避免跟文字貼太近 */
-    }
-
-    .policy-section li::before {
-      position: absolute;
-      left: 0;
-    }
-
-    .custom-list {
-      list-style: none;
-      color: #333;
-      font-size: 1.05em;
-      line-height: 1.8;
-      padding-left: 1.2em;
-    }
-
-   .custom-list li {
-      position: relative;
-      padding-left: 1.5em;
-      margin-bottom: 0.6em;
-    }
-
-   .custom-list li::before {
-      content: "\2714";
-      position: absolute;
-      left: 0;
-      color: #00993d;
-      font-weight: bold;
-      font-family: 'Arial', sans-serif;  /* 防止變成 emoji */
     }
 
     footer {
