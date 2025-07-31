@@ -37,7 +37,10 @@
     }
 
     .center-button {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 16px;      /* ← 兩顆按鈕的間距 */
+      flex-wrap: wrap;/* 小螢幕時可自動換行 */
       margin-top: 10px;
     }
 
@@ -88,6 +91,7 @@
   </div>
 
   <div class="center-button">
+    <a href="index.html" class="btn-line btn-home">🏠 返回首頁</a>
     <a href="https://lin.ee/hR8ZJk4" class="btn-line" target="_blank">💬 我要預約</a>
   </div>
 
