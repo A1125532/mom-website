@@ -61,6 +61,30 @@
       line-height: 1.6;
     }
 
+    /* 底部回首頁按鈕 */
+    .bottom-actions{
+      display: flex;
+      justify-content: center;
+      margin: 0px auto 28px;
+    }
+    
+    .btn-home{
+      display: inline-block;
+      padding: 12px 24px;
+      background: #00993d;
+      color: #fff;
+      font-weight: 700;
+      border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      transition: background .2s ease, transform .15s ease;
+    }
+    
+    .btn-home:hover{
+      background:#007a30;
+      transform: translateY(-1px);
+    }
+    
     footer {
       background-color: #333;
       color: #fff;
@@ -173,6 +197,10 @@
     </div>
   </section>
 
+  <div class="bottom-actions">
+      <a href="index.html" class="btn-home">🏠 返回首頁</a>
+  </div>
+  
   <footer>
     <p>© 陳雅惠議員服務團隊</p>
     <p>服務處地址：臺中市南區正義街236號</p>
