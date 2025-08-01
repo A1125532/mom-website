@@ -1,3 +1,4 @@
+<!-- faq.html -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -16,28 +17,55 @@
       min-height: 100vh;
     }
 
-    .faq-section {
-      background: #fff;
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: 60px auto;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      flex: 1;
+    .faq-header {
+      text-align: center;
+      margin-top: 60px;
+      padding: 0 20px;
     }
 
     .faq-title {
       font-size: 2em;
       color: #00993d;
       margin-bottom: 10px;
-      text-align: center;
     }
 
     .faq-desc {
       font-size: 1em;
       color: #555;
+      margin-bottom: 30px;
+    }
+
+    .faq-section {
+      background: #fff;
+      padding: 40px 20px;
+      width: 800px;
+      max-width: 90vw;
+      margin: 0 auto 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      flex: 1;
+    }
+
+    .search-bar {
       text-align: center;
       margin-bottom: 30px;
+    }
+
+    .search-bar input,
+    .search-bar select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    .search-bar input {
+      width: 60%;
+      max-width: 400px;
+    }
+
+    .search-bar select {
+      margin-left: 10px;
     }
 
     .faq-box {
@@ -61,14 +89,13 @@
       line-height: 1.6;
     }
 
-    /* 底部回首頁按鈕 */
-    .bottom-actions{
+    .bottom-actions {
       display: flex;
       justify-content: center;
       margin: 0px auto 28px;
     }
-    
-    .btn-home{
+
+    .btn-home {
       display: inline-block;
       padding: 12px 24px;
       background: #00993d;
@@ -79,12 +106,12 @@
       box-shadow: 0 2px 8px rgba(0,0,0,.08);
       transition: background .2s ease, transform .15s ease;
     }
-    
-    .btn-home:hover{
-      background:#007a30;
+
+    .btn-home:hover {
+      background: #007a30;
       transform: translateY(-1px);
     }
-    
+
     footer {
       background-color: #333;
       color: #fff;
@@ -104,35 +131,55 @@
   </style>
 </head>
 <body>
-  <section class="faq-section">
-    <h2 class="faq-title">Q&A 常見問題</h2>
-    <p class="faq-desc">以下是民眾常提出的疑問與解答，歡迎參考，如有更多問題也可以直接諮詢服務團隊。</p>
 
-    <div class="faq-box">
-      <p class="faq-question">Q1：被交通違規開罰單可以陳情嗎？</p>
-      <p class="faq-answer">可以！若您有合理的理由或需要協助處理，可以透過陳情表單說明狀況，我們會協助處理與回覆。</p>
+  <div class="faq-header">
+    <h2 class="faq-title">Q&A 常見問題</h2>
+    <p class="faq-desc">以下是民眾常提出的疑問與解答，歡迎參考，如有更多問題也可以直接諮詢服務團隊。<br>
+      🔍 可輸入關鍵字（如：愛心卡、水肥清運），並搭配分類選單（如：交通、社區、長照）快速查詢相關問題。</p>
+  </div>
+
+  <!-- ✅ 白色內容框內含搜尋與問答 -->
+  <section class="faq-section">
+    <div class="search-bar">
+      <input id="searchInput" type="text" placeholder="🔍 輸入關鍵字查詢">
+      <select id="categorySelect">
+        <option value="全部">全部</option>
+        <option value="陳情">陳情</option>
+        <option value="社會福利">社會福利</option>
+        <option value="交通">交通</option>
+        <option value="長照">長照</option>
+        <option value="社區">社區</option>
+        
+      </select>
     </div>
 
-    <div class="faq-box">
+    <div class="faq-box" data-category="交通 陳情">
+      <p class="faq-question">Q1：被交通違規開罰單可以陳情嗎？</p>
+      <p class="faq-answer">可以！若您有合理的理由或需要協助處理，可以透過陳情表單說明狀況，
+        我們會協助處理與回覆。</p>
+    </div>
+
+    <div class="faq-box" data-category="陳情">
       <p class="faq-question">Q2：填完陳情表單後要等多久才有回覆？</p>
       <p class="faq-answer">通常 3～5 個工作天內會有回覆，若情況緊急也可來電通知我們。</p>
     </div>
 
-    <div class="faq-box">
+    <div class="faq-box" data-category="陳情">
       <p class="faq-question">Q3：可以匿名陳情嗎？</p>
       <p class="faq-answer">為了讓我們能順利聯絡與協助處理，建議留下聯繫方式。</p>
     </div>
 
-    <div class="faq-box">
+    <div class="faq-box" data-category="陳情">
       <p class="faq-question">Q4：我在陳情整合平台寫信完成送出後，為什麼沒有收到確認信呢？</p>
       <p class="faq-answer">
         一、有些電子郵件系統為了避免您收到過多的廣告垃圾郵件，會設有過濾垃圾郵
         件的機制，但這類機制時常有誤判的情形，如果您沒有收到確認信，建議您先至垃圾郵件區尋找，或將本府信箱「csc690423@gmail.com」設定至正常郵件名單中。<br><br>
         二、如前項功能查無資料，依以往經驗，多半為您案件登錄時電子郵件填寫錯誤，建議重新登錄案件，或來電
-        （電話04-22824639）詢問。</p>
+        （電話04-22824639）詢問。
+      </p>
     </div>
 
-    <div class="faq-box">
+    <div class="faq-box" data-category="社會福利">
       <p class="faq-question">Q5：如何申請低收入戶~申辦條件為何？申請程序為何？</p>
       <p class="faq-answer">
         一、依社會救助法第四條規定，低收入戶指申請戶之戶內人口要設籍並實際居住於本市，
@@ -151,23 +198,24 @@
         (二)家庭應計算人口之新式戶口名簿或戶籍謄本。<br>
         (三)申請人及申請列冊人口之郵局及其他金融機構存摺封面及最近1年內頁影本。<br>
         (四)申請人身分證及印章，如委託代辦，代辦人亦需攜帶身分證及印章。<br>
-        (五)其他相關證明文件，視必要由公所說明、通知補件。</p>
+        (五)其他相關證明文件，視必要由公所說明、通知補件。
+      </p>
     </div>
 
-    <div class="faq-box">
+    <div class="faq-box" data-category="交通">
       <p class="faq-question">Q6：交岔路口10公尺內可以臨時停車嗎？</p>
       <p class="faq-answer">依據「道路交通安全規則」第111條規定：「交岔路口10公尺內不得臨時停車，
         即便未繪設禁止臨時停車紅線，亦不得臨時停車。」</p>
     </div>
 
-    <div class="faq-box">
+    <div class="faq-box" data-category="長照 社會福利">
       <p class="faq-question">Q7：長期照顧服務有哪些？</p>
       <p class="faq-answer">長期照顧照服務包括照顧及專業服務、交通接送、輔具購買租借及無障礙環境改善、
         喘息服務等服務。<br><br>
         需要諮詢請撥「1966長照服務專線」</p>
     </div>
 
-    <div class="faq-box">
+    <div class="faq-box" data-category="社會福利">
       <p class="faq-question">Q8：請問如何請領「敬老愛心卡」？</p>
       <p class="faq-answer">
         一、優待對象：凡設籍臺中市，並年滿65歲以上（原住民55歲）或領有身心障礙證明之市民。<br><br>
@@ -178,17 +226,18 @@
         三、已領有「敬老愛心卡」，因遷出戶籍經鎖卡(列入黑名單)者，若再遷入本市戶籍，以補發者(自費)方式處理。<br><br>
         四、依據臺中市政府辦理老人及身心障礙者敬老愛心卡乘車及各項補助要點，第八點說明：敬老愛心卡限申請者「本人」
         使用，使用時應主動出示身分證或身心障礙證明，如有轉讓或轉借他人使用，經查獲得停止使用一年、查獲第二次者得停止
-        使用三年、查獲第三次(含)以上者得停止使用五年。</p>
+        使用三年、查獲第三次(含)以上者得停止使用五年。
+      </p>
     </div>
 
-    <div class="faq-box">
+    <div class="faq-box" data-category="社區">
       <p class="faq-question">Q9：如何申請水肥清運、清溝？</p>
       <p class="faq-answer">請電洽各區清潔隊或點選以下連結進行線上申請<br>
         <a href="https://eservices.taichung.gov.tw/AdvSearch/CaseInfo/160/Notices/150008" target="_blank">
           點我前往申請頁面</a></p>
     </div>
 
-    <div class="faq-box">
+    <div class="faq-box" data-category="社區">
       <p class="faq-question">Q10：大宗垃圾(廢傢俱)清運？</p>
       <p class="faq-answer">請電洽各區清潔隊或點選以下連結進行線上申請<br>
         <a href="https://eservices.taichung.gov.tw/AdvSearch/CaseInfo/160/Notices/150010" target="_blank">
@@ -197,13 +246,38 @@
   </section>
 
   <div class="bottom-actions">
-      <a href="index.html" class="btn-home">🏠 返回首頁</a>
+    <a href="index.html" class="btn-home">🏠 返回首頁</a>
   </div>
-  
+
   <footer>
     <p>© 陳雅惠議員服務團隊</p>
     <p>服務處地址：臺中市南區正義街236號</p>
     <p>聯絡電話：04-2282-4639</p>
   </footer>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const categorySelect = document.getElementById('categorySelect');
+    const faqBoxes = document.querySelectorAll('.faq-box');
+
+    function filterFaq() {
+      const keyword = searchInput.value.toLowerCase();
+      const selectedCategory = categorySelect.value;
+
+      faqBoxes.forEach(box => {
+        const question = box.querySelector('.faq-question').innerText.toLowerCase();
+        const category = box.getAttribute('data-category');
+
+        const matchKeyword = keyword === "" || question.includes(keyword);
+        const matchCategory = selectedCategory === "全部" || category.includes(selectedCategory);
+
+        box.style.display = (matchKeyword && matchCategory) ? "block" : "none";
+      });
+    }
+
+    searchInput.addEventListener('input', filterFaq);
+    categorySelect.addEventListener('change', filterFaq);
+  </script>
+
 </body>
 </html>
