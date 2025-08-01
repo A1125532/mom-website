@@ -93,11 +93,27 @@
       font-size: 1.05em;
       line-height: 1.8;
     }
+    
+    .edu-box ul, .exp-box ul {
+      list-style: none;
+      padding-left: 1.3em;
+      font-size: 1.05em;
+      line-height: 1.8;
+    }
 
-    .edu-box li::before, .exp-box li::before {
-      content: "✔";
+    .edu-box li, .exp-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6em;
+      margin-bottom: 0.6em;
+      line-height: 1.6;
+    }
+
+    .edu-box .icon, .exp-box .icon {
       color: #00993d;
-      margin-right: 0.5em;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 0.2em;
     }
 
     @media (max-width: 768px) {
@@ -266,25 +282,25 @@
         <div class="edu-box">
           <h2>📚 學歷</h2>
           <ul>
-            <li>台中國小</li>
-            <li>懷恩中學</li>
-            <li>奧克蘭文法高中</li>
-            <li>亞洲大學經營管理學系碩士學位</li>
+            <li><span class="icon">✔</span> 台中國小</li>
+            <li><span class="icon">✔</span> 懷恩中學</li>
+            <li><span class="icon">✔</span> 奧克蘭文法高中</li>
+            <li><span class="icon">✔</span> 亞洲大學經營管理學系碩士學位</li>
           </ul>
         </div>
 
         <div class="exp-box">
           <h2>🧭 經歷</h2>
           <ul>
-            <li>現任台中市議員</li>
-            <li>南區國光里里長</li>
-            <li>前里長陳仁榮ㄟ女兒</li>
-            <li>邱素貞議員服務處主任</li>
-            <li>國光社區發展協會理事長</li>
-            <li>台中市水噹噹關懷協會常務理事</li>
-            <li>社團法人台中市婦女發展協會理事</li>
-            <li>南區戶政事務所志工隊</li>
-            <li>奧克蘭商業大學肄業</li>
+            <li><span class="icon">✔</span> 現任台中市議員</li>
+            <li><span class="icon">✔</span> 南區國光里里長</li>
+            <li><span class="icon">✔</span> 前里長陳仁榮ㄟ女兒</li>
+            <li><span class="icon">✔</span> 邱素貞議員服務處主任</li>
+            <li><span class="icon">✔</span> 國光社區發展協會理事長</li>
+            <li><span class="icon">✔</span> 台中市水噹噹關懷協會常務理事</li>
+            <li><span class="icon">✔</span> 社團法人台中市婦女發展協會理事</li>
+            <li><span class="icon">✔</span> 南區戶政事務所志工隊</li>
+            <li><span class="icon">✔</span> 奧克蘭商業大學肄業</li>
           </ul>
         </div>
       </div>
