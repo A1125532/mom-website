@@ -6,7 +6,7 @@
 
 /* 內容避免被固定導覽列擋住 */
 html { scroll-padding-top: var(--topbarH); }
-body { padding-top: calc(var(--topbarH) + 80px); }
+body { padding-top: calc(var(--topbarH) + 80px) !important; }
 
 /* 基本 */
 *{box-sizing:border-box}
