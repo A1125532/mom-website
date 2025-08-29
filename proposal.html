@@ -1,18 +1,26 @@
-<!-- proposal.html -->
+<!-- proposal.html (fixed) -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>政見建議表單 - 陳雅惠議員服務平台</title>
+
+  <!-- 共用 topbar 樣式 -->
   <link rel="stylesheet" href="shared/topbar.css">
+
   <style>
+    /* 保留 body 只做字型與底色，讓 topbar.css 的 padding-top 生效 */
     body {
       font-family: Arial, sans-serif;
       background: #f9f9f9;
-      padding: 2em;
+    }
+
+    /* 內容容器：承接原本 body 的寬度與內距 */
+    .page{
       max-width: 600px;
-      margin: auto;
+      margin: 0 auto;
+      padding: 2em;
     }
 
     h1 {
@@ -35,32 +43,36 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    form {
+    /* 表單樣式全面加上範圍，避免影響 topbar 的按鈕等 */
+    .page form{
       background: #fff;
       padding: 1.5em;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,.1);
     }
 
-    label {
+    .page form label{
       display: block;
       margin-top: 1em;
       font-weight: bold;
     }
 
-    input, textarea, select {
+    .page form input,
+    .page form textarea,
+    .page form select{
       width: 100%;
       padding: .6em;
       margin-top: .3em;
       border: 1px solid #ccc;
       border-radius: 5px;
+      font: inherit;
     }
 
-    button {
+    .page form button{
       margin-top: 1.5em;
       padding: 0.8em;
       background: #00993d;
-      color: white;
+      color: #fff;
       border: none;
       border-radius: 5px;
       width: 100%;
@@ -69,7 +81,7 @@
       transition: background 0.3s ease, transform 0.2s ease;
     }
 
-    button:hover {
+    .page form button:hover{
       background: #007a30;
       transform: scale(1.02);
     }
@@ -83,7 +95,7 @@
       animation: fadeIn 0.6s ease-in-out;
     }
 
-    footer {
+    .page footer {
       text-align: center;
       margin-top: 2em;
       color: #777;
@@ -94,128 +106,125 @@
 <body>
 
   <!-- 這個占位會被替換成共用的綠色導覽列 -->
-<div id="topbar-mount"></div>
+  <div id="topbar-mount"></div>
 
-<script>
-  // 自動嘗試多個路徑前綴，兼容根目錄與子資料夾頁面
-  (function () {
-    const mountId = 'topbar-mount';
-    const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
+  <script>
+    // 自動嘗試多個路徑前綴，兼容根目錄與子資料夾頁面
+    (function () {
+      const mountId = 'topbar-mount';
+      const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
 
-    async function tryLoad() {
-      for (const p of prefixes) {
-        try {
-          const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
-          if (!res.ok) continue;
+      async function tryLoad() {
+        for (const p of prefixes) {
+          try {
+            const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
+            if (!res.ok) continue;
 
-          const html = await res.text();
-          const mount = document.getElementById(mountId);
-          if (!mount) return;
+            const html = await res.text();
+            const mount = document.getElementById(mountId);
+            if (!mount) return;
 
-          // 插入 HTML
-          mount.outerHTML = html;
+            // 插入 HTML
+            mount.outerHTML = html;
 
-          // 確保 JS 載入
-          const s = document.createElement('script');
-          s.src = p + 'topbar.js';
-          document.body.appendChild(s);
+            // 確保 JS 載入
+            const s = document.createElement('script');
+            s.src = p + 'topbar.js';
+            document.body.appendChild(s);
 
-          // 若你忘了在 <head> 引入 CSS，這裡也補上一份（避免 404 時重複）
-          if (!document.querySelector('link[href*="topbar.css"]')) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = p + 'topbar.css';
-            document.head.appendChild(link);
-          }
-          return; // 成功就結束
-        } catch (e) {}
+            // 若 <head> 沒有 CSS，補上一份
+            if (!document.querySelector('link[href*="topbar.css"]')) {
+              const link = document.createElement('link');
+              link.rel = 'stylesheet';
+              link.href = p + 'topbar.css';
+              document.head.appendChild(link);
+            }
+            return; // 成功就結束
+          } catch (e) {}
+        }
+        // 失敗提示
+        const mount = document.getElementById(mountId);
+        if (mount) {
+          mount.innerHTML =
+            '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
+            '無法載入 <code>shared/topbar.html</code>。請確認：<br>' +
+            '1) 以伺服器方式開啟（Live Server / localhost）<br>' +
+            '2) 此頁相對於 <code>/shared</code> 的路徑層級是否正確' +
+            '</div>';
+        }
       }
-      // 全部失敗 → 在頁面顯示提示，方便排錯
-      const mount = document.getElementById(mountId);
-      if (mount) {
-        mount.innerHTML =
-          '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
-          '無法載入 <code>shared/topbar.html</code>。請確認：<br>' +
-          '1) 以伺服器方式開啟（Live Server / localhost）<br>' +
-          '2) 此頁相對於 <code>/shared</code> 的路徑層級是否正確' +
-          '</div>';
+
+      tryLoad();
+    })();
+  </script>
+
+  <div class="page">
+    <h1>💡 政見建議表單</h1>
+    <p class="page-slogan">政策一起想，城市一起改</p>
+    <p style="text-align:center;">
+      歡迎您提供建設性建議，讓議員能更貼近民意，在議會提出具體政策。
+    </p>
+
+    <form id="proposalForm">
+      <label for="name">姓名 *</label>
+      <input type="text" id="name" name="姓名" required>
+
+      <label for="gender">性別 *</label>
+      <select id="gender" name="性別" required>
+        <option value="">請選擇</option>
+        <option value="男士">男士</option>
+        <option value="女士">女士</option>
+      </select>
+
+      <label for="phone">聯絡電話 *</label>
+      <input type="tel" id="phone" name="電話" required>
+
+      <label for="email">電子信箱 *</label>
+      <input type="email" id="email" name="電子信箱" required>
+
+      <label for="content">具體建議內容 *</label>
+      <textarea id="content" name="建議內容" rows="6" required></textarea>
+
+      <button type="submit">送出建議</button>
+    </form>
+
+    <p class="sending-text" id="sendingText">寄件中，請稍等...</p>
+
+    <footer>
+      © 陳雅惠議員服務團隊<br>
+      服務處地址：台中市南區正義街236號<br>
+      聯絡電話：04-2282-4639
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("proposalForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const form = e.target;
+      const fd = new FormData(form);
+      const sendingText = document.getElementById("sendingText");
+      sendingText.style.display = "block";
+
+      try {
+        const rsp = await fetch("https://script.google.com/macros/s/AKfycbzWfelsZDB068LoMUrvOXLqmdCy3sVS7OGEfRYwtWXc0SVjaLD__WySlcNsInxSFHrEHg/exec", {
+          method: "POST",
+          body: fd
+        });
+
+        if (rsp.ok) {
+          window.location.href = "thankyou-proposal.html";
+        } else {
+          const err = await rsp.json().catch(() => ({}));
+          alert("送出失敗：" + (err.error || "請稍後再試"));
+          sendingText.style.display = "none";
+        }
+      } catch (err) {
+        alert("送出失敗，請確認網路或稍後再試！");
+        sendingText.style.display = "none";
+        console.error(err);
       }
-    }
-
-    tryLoad();
-  })();
-</script>
-
-<h1>💡 政見建議表單</h1>
-<p class="page-slogan">政策一起想，城市一起改</p>
-<p style="text-align:center;">
-  歡迎您提供建設性建議，讓議員能更貼近民意，在議會提出具體政策。
-</p>
-
-<form id="proposalForm">
-  <label for="name">姓名 *</label>
-  <input type="text" id="name" name="姓名" required>
-
-  <label for="gender">性別 *</label>
-  <select id="gender" name="性別" required>
-    <option value="">請選擇</option>
-    <option value="男士">男士</option>
-    <option value="女士">女士</option>
-  </select>
-
-  <label for="phone">聯絡電話 *</label>
-  <input type="tel" id="phone" name="電話" required>
-
-  <label for="email">電子信箱 *</label>
-  <input type="email" id="email" name="電子信箱" required>
-
-  <label for="content">具體建議內容 *</label>
-  <textarea id="content" name="建議內容" rows="6" required></textarea>
-
-  <button type="submit">送出建議</button>
-</form>
-
-<p class="sending-text" id="sendingText">寄件中，請稍等...</p>
-
-<footer>
-  © 陳雅惠議員服務團隊<br>
-  服務處地址：台中市南區正義街236號<br>
-  聯絡電話：04-2282-4639
-</footer>
-
-<script>
-document.getElementById("proposalForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const form = e.target;
-  const fd = new FormData(form);
-  const sendingText = document.getElementById("sendingText");
-  sendingText.style.display = "block"; // 顯示提示文字
-
-  try {
-    const rsp = await fetch("https://script.google.com/macros/s/AKfycbzWfelsZDB068LoMUrvOXLqmdCy3sVS7OGEfRYwtWXc0SVjaLD__WySlcNsInxSFHrEHg/exec", {
-      method: "POST",
-      body: fd
     });
-
-    if (rsp.ok) {
-      window.location.href = "thankyou-proposal.html";
-    } else {
-      const err = await rsp.json().catch(() => ({}));
-      alert("送出失敗：" + (err.error || "請稍後再試"));
-      sendingText.style.display = "none";
-    }
-  } catch (err) {
-    alert("送出失敗，請確認網路或稍後再試！");
-    sendingText.style.display = "none";
-    console.error(err);
-  }
-});
-</script>
-
+  </script>
 </body>
 </html>
-
-
-
-
