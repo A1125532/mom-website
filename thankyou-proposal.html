@@ -8,14 +8,42 @@
   <title>送出成功 - 政見建議表單</title>
   <link rel="stylesheet" href="shared/topbar.css">
   <style>
-    body { padding-top: calc(var(--topbarH) + 140px) !important; 
+    :root { --pageTopExtra: 60px; } /* 想再往下多少就改這個數值 */
+
+    /* 保留 topbar.css 的頂部推距，並再加一點（需要 !important 蓋掉它） */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      text-align: center;
+
+      /* 左右與底部內距維持原設定 */
+      padding-left: 2em;
+      padding-right: 2em;
+      padding-bottom: 2em;
+
+      /* 額外往下推（topbar.css 原本是 var(--topbarH)+80px）*/
+      padding-top: calc(var(--topbarH) + 80px + var(--pageTopExtra)) !important;
+    }
+
+    /* 新增容器：負責水平置中與限制寬度 */
+    .container {
+      max-width: 800px;   /* 白框區塊的最大寬度 */
+      margin: 0 auto;
+    }
 
     .thankyou-box {
-      background-color: white;
+      background-color: #fff;
       padding: 2em;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+      /* 讓白框本身不要撐滿整個容器（可視需要調整） */
+      max-width: 720px;
+      margin: 0 auto;   /* 置中白框 */
+      text-align: left; /* 內容靠左，標題仍可用 h1 置中樣式 */
     }
+
+    .thankyou-box h1 { text-align: left; }
 
     .note {
       margin-top: 1.5em;
@@ -34,18 +62,14 @@
     a.button {
       display: inline-block;
       text-decoration: none;
-      color: white;
+      color: #fff;
       background-color: #00993d;
       padding: 0.8em 1.5em;
       border-radius: 8px;
       font-weight: bold;
       transition: background 0.3s ease, transform 0.2s ease;
     }
-
-    a.button:hover {
-      background-color: #007a30;
-      transform: scale(1.05);
-    }
+    a.button:hover { background-color: #007a30; transform: scale(1.05); }
 
     footer {
       text-align: center;
@@ -53,80 +77,73 @@
       color: #777;
       font-size: .9em;
     }
+
+    /* 手機寬度時，白框左右留點空間 */
+    @media (max-width: 600px){
+      .thankyou-box { max-width: 100%; }
+    }
   </style>
 </head>
 <body>
+  <!-- 這個占位會被替換成共用的綠色導覽列 -->
+  <div id="topbar-mount"></div>
 
-    <!-- 這個占位會被替換成共用的綠色導覽列 -->
-<div id="topbar-mount"></div>
-
-<script>
-  // 自動嘗試多個路徑前綴，兼容根目錄與子資料夾頁面
-  (function () {
-    const mountId = 'topbar-mount';
-    const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
-
-    async function tryLoad() {
-      for (const p of prefixes) {
-        try {
-          const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
-          if (!res.ok) continue;
-
-          const html = await res.text();
-          const mount = document.getElementById(mountId);
-          if (!mount) return;
-
-          // 插入 HTML
-          mount.outerHTML = html;
-
-          // 確保 JS 載入
-          const s = document.createElement('script');
-          s.src = p + 'topbar.js';
-          document.body.appendChild(s);
-
-          // 若你忘了在 <head> 引入 CSS，這裡也補上一份（避免 404 時重複）
-          if (!document.querySelector('link[href*="topbar.css"]')) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = p + 'topbar.css';
-            document.head.appendChild(link);
-          }
-          return; // 成功就結束
-        } catch (e) {}
+  <script>
+    (function () {
+      const mountId = 'topbar-mount';
+      const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
+      async function tryLoad() {
+        for (const p of prefixes) {
+          try {
+            const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
+            if (!res.ok) continue;
+            const html = await res.text();
+            const mount = document.getElementById(mountId);
+            if (!mount) return;
+            mount.outerHTML = html;
+            const s = document.createElement('script');
+            s.src = p + 'topbar.js';
+            document.body.appendChild(s);
+            if (!document.querySelector('link[href*="topbar.css"]')) {
+              const link = document.createElement('link');
+              link.rel = 'stylesheet';
+              link.href = p + 'topbar.css';
+              document.head.appendChild(link);
+            }
+            return;
+          } catch (e) {}
+        }
+        const mount = document.getElementById(mountId);
+        if (mount) {
+          mount.innerHTML =
+            '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
+            '無法載入 <code>shared/topbar.html</code>。請確認路徑層級與以伺服器方式開啟。' +
+            '</div>';
+        }
       }
-      // 全部失敗 → 在頁面顯示提示，方便排錯
-      const mount = document.getElementById(mountId);
-      if (mount) {
-        mount.innerHTML =
-          '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
-          '無法載入 <code>shared/topbar.html</code>。請確認：<br>' +
-          '1) 以伺服器方式開啟（Live Server / localhost）<br>' +
-          '2) 此頁相對於 <code>/shared</code> 的路徑層級是否正確' +
-          '</div>';
-      }
-    }
+      tryLoad();
+    })();
+  </script>
 
-    tryLoad();
-  })();
-</script>
-  <div class="thankyou-box">
-    <h1>🎉 您的建議已成功送出！</h1>
-    <p class="note">
-      感謝您的寶貴建議，<br>
-      團隊將會彙整意見後進一步研議。<br>
-      感謝您的關心與參與！
-    </p>
-    <div class="buttons">
-      <a href="index.html" class="button">🏠 返回首頁</a>
-      <a href="proposal.html" class="button">📝 再填一份建議</a>
+  <main class="container">
+    <div class="thankyou-box">
+      <h1>🎉 您的建議已成功送出！</h1>
+      <p class="note">
+        感謝您的寶貴建議，<br>
+        團隊將會彙整意見後進一步研議。<br>
+        感謝您的關心與參與！
+      </p>
+      <div class="buttons">
+        <a href="index.html" class="button">🏠 返回首頁</a>
+        <a href="proposal.html" class="button">📝 再填一份建議</a>
+      </div>
     </div>
-  </div>
 
-  <footer>
-    © 陳雅惠議員服務團隊<br>
-    服務處地址：台中市南區正義街236號<br>
-    聯絡電話：04-2282-4639
-  </footer>
+    <footer>
+      © 陳雅惠議員服務團隊<br>
+      服務處地址：台中市南區正義街236號<br>
+      聯絡電話：04-2282-4639
+    </footer>
+  </main>
 </body>
 </html>
-
