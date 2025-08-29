@@ -91,6 +91,55 @@
   .news .desc{ font-size:.9rem; color:#444; line-height:1.5; margin-top:6px; }
   .meta{font-size:.86rem;color:#666;margin-top:4px}
 
+  /* 最新公告下方的小提示文案 */
+  .bulletin .bulletin-tip{
+    font-size:.95rem;
+    color:#555;
+    line-height:1.6;
+    margin: -2px 0 10px;  /* 與標題、控制列的間距 */
+  }
+
+  /* === Bulletin 控制列（搜尋 + 篩選） === */
+  .bulletin .controls{
+    display:flex; gap:12px; align-items:center; margin:10px 0 14px;
+    flex-wrap:wrap;
+  }
+  .bulletin .search-wrap{
+    position:relative; flex:1 1 420px; max-width:720px;
+  }
+  .bulletin .search-wrap input{
+    width:100%; font-size:16px; padding:12px 16px 12px 44px;
+    border:1px solid #ddd; border-radius:12px; outline:none;
+    box-shadow:0 2px 8px rgba(0,0,0,.06) inset; transition:border .2s ease;
+  }
+  .bulletin .search-wrap input:focus{ border-color:#00993d; }
+  .bulletin .search-wrap .icon{
+    position:absolute; left:14px; top:50%; transform:translateY(-50%);
+    pointer-events:none; font-size:18px;
+  }
+  .bulletin .filter{
+    min-width:110px; font-size:16px; padding:10px 12px;
+    border:1px solid #111; border-radius:12px; background:#fff; cursor:pointer;
+  }
+
+  /* === 分頁 === */
+  .pager{
+    display:flex; gap:10px; align-items:center; justify-content:center;
+    margin:20px 0 6px;
+  }
+  .page-btn, .page-nav{
+    display:inline-grid; place-items:center; min-width:44px; height:44px;
+    padding:0 12px; border-radius:6px; background:#cc0092; color:#fff; cursor:pointer;
+    border:none; font-size:16px; user-select:none;
+  }
+  .page-num{
+    display:inline-grid; place-items:center; min-width:36px; height:36px;
+    font-size:16px; padding:0 8px; border-radius:6px; cursor:pointer; border:1px solid transparent;
+  }
+  .page-num.active{ background:#cc0092; color:#fff; }
+  .page-num:hover{ border-color:#cc0092; }
+  .pager .ellipsis{ padding:0 4px; color:#666; }
+
   /* =========================
     Footer
   ========================== */
@@ -105,6 +154,8 @@
   ========================== */
   @media (max-width:900px){
     .bgrid{ grid-template-columns:1fr; }
+    .page-btn{ min-width:40px; height:40px; }
+    .page-num{ min-width:32px; height:32px; }
   }
   </style>
 </head>
@@ -142,14 +193,39 @@
     </section>
 
     <!-- =========================
-      最新公告
+      最新公告（已加入搜尋、分類、分頁）
     ========================== -->
-    <section class="section bulletin">
+    <section class="section bulletin" id="bulletin">
       <h2>📣 最新公告</h2>
-      <div class="bgrid">
 
+      <!-- 說明文（放在 h2 下面、controls 上面） -->
+       <p class="bulletin-tip">
+        🔍 可輸入關鍵字（如：法律、質詢），並搭配分類選單（如：服務處公告、新聞）快速查詢相關資訊。
+       </p>
+
+      <!-- 控制列：搜尋 + 分類 -->
+      <div class="controls" aria-label="公告搜尋與分類">
+        <div class="search-wrap">
+          <span class="icon">🔍</span>
+          <input id="bulletin-search" type="search" placeholder="輸入關鍵字查詢" aria-label="輸入關鍵字查詢">
+        </div>
+        <select id="bulletin-filter" class="filter" aria-label="分類篩選">
+          <option value="全部" selected>全部</option>
+          <option value="服務處公告">服務處公告</option>
+          <option value="議會 / 政策">議會 / 政策</option>
+          <option value="民生">民生</option>
+          <option value="交通 / 在地建設">交通 / 在地建設</option>
+          <option value="教育">教育</option>
+          <option value="公共安全">公共安全（自然災害、防疫、治安...）</option>
+          <option value="政治參與">政治參與</option>
+          <!-- 需要更多分類就自行加 option -->
+        </select>
+      </div>
+
+      <!-- 卡片清單（請為每張卡片加上 data-category，逗號分隔可多分類） -->
+      <div class="bgrid" id="bulletin-list">
         <!-- 非連結的卡片 -->
-        <div class="news is-static">
+        <div class="news is-static" data-category="服務處公告">
           <span class="badge">服務處公告</span>
           <div class="title">每週五服務處提供免費法律諮詢服務</div><br>
           <div class="desc">生活遇到法律問題需要幫助嗎？我們提供免費初步諮詢，協助您釐清權益與對策。<br><br>
@@ -159,20 +235,78 @@
         </div>
 
         <!-- 可點連結的卡片 -->
-        <a class="news" href="https://reurl.cc/oYvXDl">
-          <span class="badge">新聞</span>
+        <a class="news" href="https://reurl.cc/WOberx" target="_blank" rel="noopener noreferrer" data-category="議會 / 政策,民生">
+          <span class="badge">議會 / 政策</span>
+          <span class="badge">民生</span>
+          <div class="title">綠議員指台中超徵75億元應「還稅於民」　中市府駁：近6年短絀9億元</div><br>
+          <div class="desc">點一下看更多</div><br>
+          <div class="meta">2025-08-19 · 上報快訊／鍾知諭</div>
+        </a>
+        
+        <a class="news" href="https://reurl.cc/Om624r" target="_blank" rel="noopener noreferrer" data-category="公共安全">
+          <span class="badge">公共安全</span>
+          <div class="title">楊柳颱風來襲 中市議員籲零死角防汛</div><br>
+          <div class="desc">點一下看更多</div><br>
+          <div class="meta">2025-08-13 · 諸葛志一</div>
+        </a>
+
+        <a class="news" href="https://reurl.cc/oYvXDl" target="_blank" rel="noopener noreferrer" data-category="議會 / 政策,民生">
+          <span class="badge">議會 / 政策</span>
+          <span class="badge">民生</span>
           <div class="title">帶狀皰疹後遺症強 民眾盼中市府跟進疫苗補助</div><br>
           <div class="desc">點一下看更多</div><br>
           <div class="meta">2025-08-11 · 大紀元記者黃玉燕台灣台中報導</div>
         </a>
 
-        <a class="news" href="https://reurl.cc/dap8rk">
-          <span class="badge">新聞</span>
+        <a class="news" href="https://reurl.cc/nYpQ1X" target="_blank" rel="noopener noreferrer" data-category="交通 / 在地建設">
+          <span class="badge">交通 / 在地建設</span>
+          <div class="title">路口十公尺禁停民怨爭議不斷 議員籲檢討改善</div><br>
+          <div class="desc">點一下看更多</div><br>
+          <div class="meta">2025-08-06 · 記者孫詩蘋／台中報導</div>
+        </a>
+
+        <a class="news" href="https://reurl.cc/dap8rk" target="_blank" rel="noopener noreferrer" data-category="公共安全">
+          <span class="badge">公共安全</span>
           <div class="title">豪雨釀災！陳雅惠、江肇國挺進台南 協助居民清理家園</div><br>
           <div class="desc">點一下看更多</div><br>
           <div class="meta">2025-08-04 · 民視新聞網</div>
         </a>
+
+        <a class="news" href="https://reurl.cc/VW2G1n" target="_blank" rel="noopener noreferrer" data-category="政治參與">
+          <span class="badge">政治參與</span>
+          <div class="title">大罷免大決戰！請不適任藍委離開國會　陳雅惠、江肇國拚了</div><br>
+          <div class="desc">點一下看更多</div><br>
+          <div class="meta">2025-07-20 · 民視新聞網</div>
+        </a>
+
+        <a class="news" href="https://reurl.cc/WObeq7" target="_blank" rel="noopener noreferrer" data-category="民生">
+          <span class="badge">民生</span>
+          <div class="title">台中市區下雪了? 木棉花棉絮四處飄</div><br>
+          <div class="desc">點一下看更多</div><br>
+          <div class="meta">2025-06-12 · 記者蘇金鳳／台中報導</div>
+        </a>
+
+        <a class="news" href="https://reurl.cc/x3WY15" target="_blank" rel="noopener noreferrer" data-category="議會 / 政策">
+          <span class="badge">議會 / 政策</span>
+          <div class="title">盧秀燕未來動向　綠議員陳雅惠議事堂直球追問</div><br>
+          <div class="desc">點一下看更多</div><br>
+          <div class="meta">2025-05-28 · 記者李梅金／台中報導</div>
+        </a>
+
+        <a class="news" href="https://reurl.cc/vLEyk1" target="_blank" rel="noopener noreferrer" data-category="交通 / 在地建設">
+          <span class="badge">交通 / 在地建設</span>
+          <div class="title">中市「文小38」荒廢多年 議員怒批已成治安死角</div><br>
+          <div class="desc">點一下看更多</div><br>
+          <div class="meta">2025-05-25 · 記者蘇金鳳／台中報導</div>
+        </a>
+
+        <!-- 之後新增公告：複製其中一張，記得填好 data-category，例如：
+        <a class="news" href="..." data-category="一般,新聞"> ... </a>
+        -->
       </div>
+
+      <!-- 分頁列 -->
+      <nav class="pager" id="bulletin-pager" aria-label="公告分頁"></nav>
     </section>
   </main>
 
@@ -222,7 +356,7 @@
     })();
   </script>
 
-  <!-- 只保留：輪播腳本（導覽列抽屜等交給 shared/topbar.js） -->
+  <!-- Hero 輪播腳本 -->
   <script>
     (function(){
       const root = document.getElementById('carousel');
@@ -251,6 +385,111 @@
       root.addEventListener('mouseenter',stop);
       root.addEventListener('mouseleave',auto);
       auto();
+    })();
+  </script>
+
+  <!-- 📣 公告：搜尋 + 分類 + 分頁（每頁 9 則） -->
+  <script>
+    (function(){
+      const PER_PAGE = 6;                 // 固定每頁 6 則
+      const list   = document.getElementById('bulletin-list');
+      const cards  = Array.from(list.children);
+      const search = document.getElementById('bulletin-search');
+      const filter = document.getElementById('bulletin-filter');
+      const pager  = document.getElementById('bulletin-pager');
+      const anchorTop = () => document.getElementById('bulletin').offsetTop - 80;
+
+      let view = { q:'', cat:'全部', page:1, filtered:cards };
+
+      function textOf(card){
+        const t = card.querySelector('.title')?.textContent || '';
+        const d = card.querySelector('.desc')?.textContent || '';
+        const b = card.querySelector('.badge')?.textContent || '';
+        return (t + ' ' + d + ' ' + b).toLowerCase();
+      }
+      function categoriesOf(card){
+        const raw = (card.getAttribute('data-category') || '').split(',');
+        return raw.map(s => s.trim()).filter(Boolean);
+      }
+      function applyFilters(){
+        const q = view.q.trim().toLowerCase();
+        const cat = view.cat;
+        view.filtered = cards.filter(c => {
+          const okQ   = q ? textOf(c).includes(q) : true;
+          const okCat = (cat === '全部') ? true : categoriesOf(c).includes(cat);
+          return okQ && okCat;
+        });
+        view.page = 1;
+        render();
+      }
+
+      function render(){
+        // 1) 全部隱藏
+        cards.forEach(c => c.style.display = 'none');
+
+        // 2) 取出本頁要顯示的卡片
+        const total = view.filtered.length;
+        const pages = Math.max(1, Math.ceil(total / PER_PAGE));
+        view.page = Math.min(view.page, pages);
+
+        const start = (view.page - 1) * PER_PAGE;
+        const end   = start + PER_PAGE;
+        view.filtered.slice(start, end).forEach(c => c.style.display = '');
+
+        // 3) 重繪分頁
+        drawPager(pages);
+      }
+
+      function pageNum(num, current){
+        const btn = document.createElement('button');
+        btn.className = 'page-num' + (num === current ? ' active' : '');
+        btn.textContent = num;
+        btn.addEventListener('click', () => { view.page = num; render(); window.scrollTo({top: anchorTop(), behavior:'smooth'}); });
+        return btn;
+      }
+
+      function drawPager(pages){
+        pager.innerHTML = '';
+        if (pages <= 1){ return; }
+
+        const prev = document.createElement('button');
+        prev.className = 'page-btn page-prev';
+        prev.textContent = '上一頁';
+        prev.disabled = (view.page === 1);
+        prev.addEventListener('click', () => { if(view.page>1){ view.page--; render(); window.scrollTo({top: anchorTop(), behavior:'smooth'}); }});
+        pager.appendChild(prev);
+
+        // 頁碼（顯示：1、目前頁±1、最後頁；其餘以省略號表示）
+        const current = view.page;
+        const want = new Set([1, current-1, current, current+1, pages]);
+        const normalized = [...Array(pages)].map((_,i)=>i+1).filter(n => want.has(n) && n>=1 && n<=pages);
+
+        let last = 0;
+        normalized.forEach(n => {
+          if (n - last > 1) {
+            const el = document.createElement('span');
+            el.className = 'ellipsis';
+            el.textContent = '…';
+            pager.appendChild(el);
+          }
+          pager.appendChild(pageNum(n, current));
+          last = n;
+        });
+
+        const next = document.createElement('button');
+        next.className = 'page-btn page-next';
+        next.textContent = '下一頁';
+        next.disabled = (view.page === pages);
+        next.addEventListener('click', () => { if(view.page<pages){ view.page++; render(); window.scrollTo({top: anchorTop(), behavior:'smooth'}); }});
+        pager.appendChild(next);
+      }
+
+      // 綁事件
+      search.addEventListener('input', e => { view.q = e.target.value; applyFilters(); });
+      filter.addEventListener('change', e => { view.cat = e.target.value; applyFilters(); });
+
+      // 初始顯示
+      render();
     })();
   </script>
 </body>
