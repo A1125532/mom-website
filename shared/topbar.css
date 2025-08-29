@@ -6,9 +6,6 @@
   font-family: 'Noto Sans TC', sans-serif;
 }
 
-/* 放在 topbar.css 很前面，變成全站統一規格 */
-html, body { margin: 0; padding: 0; }
-
 /* 讓按鈕在每頁都用同一字級，避免因字型差異看起來大小不同 */
 .nav a.btn{
   font-size: 1rem;
