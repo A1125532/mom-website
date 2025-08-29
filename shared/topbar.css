@@ -1,3 +1,16 @@
+/* 放在檔案最上面 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700&display=swap');
+
+/* 只限定導覽列使用統一字型，避免被各頁 body 影響 */
+.topbar, .topbar * {
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+/* 讓按鈕在每頁都用同一字級，避免因字型差異看起來大小不同 */
+.nav a.btn{
+  font-size: 1rem;
+}
+
 :root{
   --primary:#00993d; --accent:#e303a4;
   --radius:14px; --shadow:0 2px 10px rgba(0,0,0,.12);
