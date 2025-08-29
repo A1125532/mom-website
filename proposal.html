@@ -93,6 +93,59 @@
 </head>
 <body>
 
+  <!-- 這個占位會被替換成共用的綠色導覽列 -->
+<div id="topbar-mount"></div>
+
+<script>
+  // 自動嘗試多個路徑前綴，兼容根目錄與子資料夾頁面
+  (function () {
+    const mountId = 'topbar-mount';
+    const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
+
+    async function tryLoad() {
+      for (const p of prefixes) {
+        try {
+          const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
+          if (!res.ok) continue;
+
+          const html = await res.text();
+          const mount = document.getElementById(mountId);
+          if (!mount) return;
+
+          // 插入 HTML
+          mount.outerHTML = html;
+
+          // 確保 JS 載入
+          const s = document.createElement('script');
+          s.src = p + 'topbar.js';
+          document.body.appendChild(s);
+
+          // 若你忘了在 <head> 引入 CSS，這裡也補上一份（避免 404 時重複）
+          if (!document.querySelector('link[href*="topbar.css"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = p + 'topbar.css';
+            document.head.appendChild(link);
+          }
+          return; // 成功就結束
+        } catch (e) {}
+      }
+      // 全部失敗 → 在頁面顯示提示，方便排錯
+      const mount = document.getElementById(mountId);
+      if (mount) {
+        mount.innerHTML =
+          '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
+          '無法載入 <code>shared/topbar.html</code>。請確認：<br>' +
+          '1) 以伺服器方式開啟（Live Server / localhost）<br>' +
+          '2) 此頁相對於 <code>/shared</code> 的路徑層級是否正確' +
+          '</div>';
+      }
+    }
+
+    tryLoad();
+  })();
+</script>
+
 <h1>💡 政見建議表單</h1>
 <p class="slogan">政策一起想，城市一起改</p>
 <p style="text-align:center;">
@@ -162,5 +215,6 @@ document.getElementById("proposalForm").addEventListener("submit", async (e) => 
 
 </body>
 </html>
+
 
 
