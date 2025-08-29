@@ -6,156 +6,131 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>送出成功 - 陳情表單</title>
-
-  <!-- 共用頂欄樣式 -->
   <link rel="stylesheet" href="shared/topbar.css">
-
   <style>
-    /* ====== 本頁樣式（不動共用檔） ====== */
-    body{
+    body {
       font-family: Arial, sans-serif;
       background-color: #f0f8ff;
-      /* 抵消共用 topbar.css 對 body 的 padding-top，改由 .page 控制與頂欄距離 */
-      padding-top: 0 !important;
-    }
-
-    /* 版面容器：控制寬度與上下距離 */
-    .page{
-      max-width: 680px;
-      margin: calc(var(--topbarH) + 40px) auto 40px;
-      padding: 0 16px;
+      padding: 2em;
+      max-width: 600px;
+      margin: auto;
       text-align: center;
     }
-
-    .thankyou-box{
-      background-color:#fff;
-      padding:2em;
-      border-radius:12px;
-      box-shadow:0 0 10px rgba(0,0,0,.1);
+    .thankyou-box {
+      background-color: white;
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
-    .case-id{
-      margin-top:1.5em;
-      margin-bottom:1em;
-      font-size:2rem;
-      font-weight:700;
-      color:#cc0092;
-      word-break:break-all;
+    /* 🆕 案件編號：更大、更粗，並與下方說明拉出間距 */
+    .case-id {
+      margin-top: 1.5em;
+      margin-bottom: 1em;  /* 與說明文字留白 */
+      font-size: 2rem;     /* 原 1.2em → 2rem 更醒目 */
+      font-weight: 700;    /* 加粗 */
+      color: #cc0092;
+      word-break: break-all;
     }
+    /* 只讓謝謝頁那一顆按鈕吃到樣式，不影響 topbar 連結 */
+.primary-btn{
+  display:inline-block;
+  margin-top:1.5em;
+  text-decoration:none;
+  color:#fff;
+  background-color:#00993d;
+  padding:0.8em 1.5em;
+  border-radius:8px;
+  font-weight:bold;
+  transition:background .3s ease, transform .2s ease;
+}
+.primary-btn:hover{
+  background-color:#007a30;
+  transform:scale(1.05);
+}
 
-    a{
-      display:inline-block;
-      margin-top:1.5em;
-      text-decoration:none;
-      color:#fff;
-      background-color:#00993d;
-      padding:.8em 1.5em;
-      border-radius:8px;
-      font-weight:bold;
-      transition:background .3s ease, transform .2s ease;
-    }
-    a:hover{ background-color:#007a30; transform:scale(1.05); }
+/* 把置中移到白框，避免全頁繼承 */
+.thankyou-box{ text-align:center; }
 
-    footer{
-      text-align:center;
-      margin-top:24px;
-      color:#777;
-      font-size:.9em;
+    footer {
+      text-align: center;
+      margin-top: 2em;
+      color: #777;
+      font-size: .9em;
     }
-
-    /* ====== 覆寫：讓 6 顆按鈕不換行（桌機） ====== */
-    @media (min-width:901px){
-      .topbar .nav{ flex-wrap: nowrap !important; }
-      .topbar .nav-links{
-        display:flex !important;
-        flex-wrap:nowrap !important;
-        white-space:nowrap;
-        gap:10px;
-      }
-    }
-
-    /* ====== 覆寫：標題可點但外觀不變 ====== */
-    .topbar .brand,
-    .topbar .brand:link,
-    .topbar .brand:visited,
-    .topbar .brand:hover,
-    .topbar .brand:focus,
-    .topbar .brand:active{
-      color:#fff;
-      text-decoration:none;
-      outline:none;
-      box-shadow:none;
-      filter:none;
-    }
-    .topbar .brand{ -webkit-tap-highlight-color:transparent; }
   </style>
 </head>
 <body>
-  <!-- 綠色導覽列插槽（由本頁腳本載入 shared/topbar.html + topbar.js） -->
-  <div id="topbar-mount"></div>
 
-  <main class="page">
-    <div class="thankyou-box">
-      <h1>🎉 表單已成功送出！</h1>
-      <p>感謝您的陳情，我們已收到資料。</p>
-      <p>以下是您的案件編號：</p>
-      <div class="case-id" id="caseId">載入中...</div>
-      <div class="note">
-        此編號已寄至您的信箱，可用於查詢案件進度。<br>
-        如有任何問題，歡迎聯絡服務處。
-      </div>
-      <a href="index.html">🏠 返回首頁</a>
-    </div>
+    <!-- 這個占位會被替換成共用的綠色導覽列 -->
+<div id="topbar-mount"></div>
 
-    <footer>
-      © 陳雅惠議員服務團隊<br>
-      服務處地址：台中市南區正義街236號<br>
-      聯絡電話：04-2282-4639
-    </footer>
-  </main>
+<script>
+  // 自動嘗試多個路徑前綴，兼容根目錄與子資料夾頁面
+  (function () {
+    const mountId = 'topbar-mount';
+    const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
 
-  <!-- 載入共用頂欄 HTML/JS（多路徑相容） -->
-  <script>
-    (function () {
-      const mountId = 'topbar-mount';
-      const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
-      async function tryLoad() {
-        for (const p of prefixes) {
-          try {
-            const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
-            if (!res.ok) continue;
-            const html = await res.text();
-            const mount = document.getElementById(mountId);
-            if (!mount) return;
+    async function tryLoad() {
+      for (const p of prefixes) {
+        try {
+          const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
+          if (!res.ok) continue;
 
-            mount.outerHTML = html;
+          const html = await res.text();
+          const mount = document.getElementById(mountId);
+          if (!mount) return;
 
-            const s = document.createElement('script');
-            s.src = p + 'topbar.js';
-            document.body.appendChild(s);
+          // 插入 HTML
+          mount.outerHTML = html;
 
-            if (!document.querySelector('link[href*="topbar.css"]')) {
-              const link = document.createElement('link');
-              link.rel = 'stylesheet';
-              link.href = p + 'topbar.css';
-              document.head.appendChild(link);
-            }
-            return;
-          } catch (e) {}
-        }
-        const mount = document.getElementById(mountId);
-        if (mount) {
-          mount.innerHTML =
-            '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
-            '無法載入 <code>shared/topbar.html</code>，請確認路徑是否正確' +
-            '</div>';
-        }
+          // 確保 JS 載入
+          const s = document.createElement('script');
+          s.src = p + 'topbar.js';
+          document.body.appendChild(s);
+
+          // 若你忘了在 <head> 引入 CSS，這裡也補上一份（避免 404 時重複）
+          if (!document.querySelector('link[href*="topbar.css"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = p + 'topbar.css';
+            document.head.appendChild(link);
+          }
+          return; // 成功就結束
+        } catch (e) {}
       }
-      tryLoad();
-    })();
-  </script>
+      // 全部失敗 → 在頁面顯示提示，方便排錯
+      const mount = document.getElementById(mountId);
+      if (mount) {
+        mount.innerHTML =
+          '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
+          '無法載入 <code>shared/topbar.html</code>。請確認：<br>' +
+          '1) 以伺服器方式開啟（Live Server / localhost）<br>' +
+          '2) 此頁相對於 <code>/shared</code> 的路徑層級是否正確' +
+          '</div>';
+      }
+    }
 
-  <!-- 案件編號帶入 -->
+    tryLoad();
+  })();
+</script>
+  <div class="thankyou-box">
+    <h1>🎉 表單已成功送出！</h1>
+    <p>感謝您的陳情，我們已收到資料。</p>
+    <p>以下是您的案件編號：</p>
+    <div class="case-id" id="caseId">載入中...</div>
+    <div class="note">
+      此編號已寄至您的信箱，可用於查詢案件進度。<br>
+      如有任何問題，歡迎聯絡服務處。
+    </div>
+    <a href="index.html" class="primary-btn">🏠 返回首頁</a>
+  </div>
+
+  <footer>
+    © 陳雅惠議員服務團隊<br>
+    服務處地址:台中市南區正義街236號<br>
+    聯絡電話：04-2282-4639
+  </footer>
+
   <script>
     const params = new URLSearchParams(window.location.search);
     const caseId = params.get("caseId");
