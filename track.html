@@ -10,34 +10,25 @@
     body {
       font-family: Arial, sans-serif;
       background: #f9f9f9;
-      padding-top: calc(var(--topbarH) + 0px) !important; /* 與 proposal 統一 */
-    }
-
-    /* 版心容器 */
-    .page {
       max-width: 600px;
-      margin: 0 auto;
+      margin: auto;
       padding: 2em;
     }
-
     h1 {
       text-align: center;
       color: #00993d;
     }
-
     form {
       background: #fff;
       padding: 1.5em;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,.1);
     }
-
     label {
       display: block;
       margin-top: 1em;
       font-weight: bold;
     }
-
     input {
       width: 100%;
       padding: .6em;
@@ -85,126 +76,125 @@
 </head>
 <body>
 
-  <!-- 這個占位會被替換成共用的綠色導覽列 -->
-  <div id="topbar-mount"></div>
+    <!-- 這個占位會被替換成共用的綠色導覽列 -->
+<div id="topbar-mount"></div>
 
-  <script>
-    // 自動嘗試多個路徑前綴，兼容根目錄與子資料夾頁面
-    (function () {
-      const mountId = 'topbar-mount';
-      const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
+<script>
+  // 自動嘗試多個路徑前綴，兼容根目錄與子資料夾頁面
+  (function () {
+    const mountId = 'topbar-mount';
+    const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
 
-      async function tryLoad() {
-        for (const p of prefixes) {
-          try {
-            const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
-            if (!res.ok) continue;
+    async function tryLoad() {
+      for (const p of prefixes) {
+        try {
+          const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
+          if (!res.ok) continue;
 
-            const html = await res.text();
-            const mount = document.getElementById(mountId);
-            if (!mount) return;
+          const html = await res.text();
+          const mount = document.getElementById(mountId);
+          if (!mount) return;
 
-            // 插入 HTML
-            mount.outerHTML = html;
+          // 插入 HTML
+          mount.outerHTML = html;
 
-            // 確保 JS 載入
-            const s = document.createElement('script');
-            s.src = p + 'topbar.js';
-            document.body.appendChild(s);
+          // 確保 JS 載入
+          const s = document.createElement('script');
+          s.src = p + 'topbar.js';
+          document.body.appendChild(s);
 
-            // 若你忘了在 <head> 引入 CSS，這裡也補上一份（避免 404 時重複）
-            if (!document.querySelector('link[href*="topbar.css"]')) {
-              const link = document.createElement('link');
-              link.rel = 'stylesheet';
-              link.href = p + 'topbar.css';
-              document.head.appendChild(link);
-            }
-            return; // 成功就結束
-          } catch (e) {}
-        }
-        // 全部失敗 → 在頁面顯示提示，方便排錯
-        const mount = document.getElementById(mountId);
-        if (mount) {
-          mount.innerHTML =
-            '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
-            '無法載入 <code>shared/topbar.html</code>。請確認：<br>' +
-            '1) 以伺服器方式開啟（Live Server / localhost）<br>' +
-            '2) 此頁相對於 <code>/shared</code> 的路徑層級是否正確' +
-            '</div>';
-        }
+          // 若你忘了在 <head> 引入 CSS，這裡也補上一份（避免 404 時重複）
+          if (!document.querySelector('link[href*="topbar.css"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = p + 'topbar.css';
+            document.head.appendChild(link);
+          }
+          return; // 成功就結束
+        } catch (e) {}
       }
-
-      tryLoad();
-    })();
-  </script>
-
-  <div class="page">
-    <h1>🔍 案件進度查詢</h1>
-    <p style="text-align:center;">請輸入您填寫表單時的電子信箱與案件編號</p>
-
-    <form id="trackForm" onsubmit="handleSearch(event)">
-      <label for="email">電子信箱</label>
-      <input type="email" id="email" required />
-
-      <label for="caseid">案件編號</label>
-      <input type="text" id="caseid" required />
-
-      <div style="display: flex; gap: 1em; margin-top: 1.5em;">
-        <button type="submit" class="action-button">🔍 查詢案件</button>
-        <a href="index.html" class="action-button">🏠 回首頁</a>
-      </div>
-    </form>
-
-    <div id="result" class="result">
-      <strong>查詢結果：</strong>
-      <p id="resultText">（這裡會顯示查詢到的案件狀態）</p>
-    </div>
-
-    <footer>
-      © 陳雅惠議員服務團隊<br>
-      服務處地址：台中市南區正義街236號<br>
-      聯絡電話：04-2282-4639
-    </footer>
-  </div>
-
-  <script>
-  function normalize(str){
-    if(!str) return '';
-    const s = str.trim().replace(/[！-～]/g,ch =>
-      String.fromCharCode(ch.charCodeAt(0)-0xFEE0)
-    ).replace('　',' ');
-    return s.toLowerCase();
-  }
-
-  async function handleSearch(e){
-    e.preventDefault();
-    const email  = normalize(document.getElementById('email').value);
-    const caseId = normalize(document.getElementById('caseid').value);
-
-    const box = document.getElementById('result');
-    const txt = document.getElementById('resultText');
-
-    try {
-      const res  = await fetch('https://opensheet.elk.sh/1_mUxHK6iXozkkeyZ8YV82AUUe0BQe4uqc-blRuD6yhU/progress');
-      const data = await res.json();
-
-      const row = data.find(r =>
-        normalize(r['案件編號']) === caseId &&
-        normalize(r['電子信箱']) === email
-      );
-
-      if (row) {
-        const note = (row['備註'] || '').replaceAll('\\n','<br/>');
-        txt.innerHTML = `🔍 案件狀態：<strong>${row['案件狀態']}</strong><br/>📝 備註：${note || '—'}`;
-      } else {
-        txt.innerHTML = '<span style="color:red;">查無此案件，請確認輸入正確（請使用半形英數）。</span>';
+      // 全部失敗 → 在頁面顯示提示，方便排錯
+      const mount = document.getElementById(mountId);
+      if (mount) {
+        mount.innerHTML =
+          '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
+          '無法載入 <code>shared/topbar.html</code>。請確認：<br>' +
+          '1) 以伺服器方式開啟（Live Server / localhost）<br>' +
+          '2) 此頁相對於 <code>/shared</code> 的路徑層級是否正確' +
+          '</div>';
       }
-      box.style.display = 'block';
-    } catch (err) {
-      txt.innerHTML = '<span style="color:red;">無法讀取資料，請稍後再試。</span>';
-      box.style.display = 'block';
     }
+
+    tryLoad();
+  })();
+</script>
+
+<h1>🔍 案件進度查詢</h1>
+<p style="text-align:center;">請輸入您填寫表單時的電子信箱與案件編號</p>
+
+<form id="trackForm" onsubmit="handleSearch(event)">
+  <label for="email">電子信箱</label>
+  <input type="email" id="email" required />
+
+  <label for="caseid">案件編號</label>
+  <input type="text" id="caseid" required />
+
+  <div style="display: flex; gap: 1em; margin-top: 1.5em;">
+    <button type="submit" class="action-button">🔍 查詢案件</button>
+    <a href="index.html" class="action-button">🏠 回首頁</a>
+  </div>
+</form>
+
+<div id="result" class="result">
+  <strong>查詢結果：</strong>
+  <p id="resultText">（這裡會顯示查詢到的案件狀態）</p>
+</div>
+
+<footer>
+  © 陳雅惠議員服務團隊<br>
+  服務處地址：台中市南區正義街236號<br>
+  聯絡電話：04-2282-4639
+</footer>
+
+<script>
+function normalize(str){
+  if(!str) return '';
+  const s = str.trim().replace(/[！-～]/g,ch =>
+    String.fromCharCode(ch.charCodeAt(0)-0xFEE0)
+  ).replace('　',' ');
+  return s.toLowerCase();
+}
+
+async function handleSearch(e){
+  e.preventDefault();
+  const email  = normalize(document.getElementById('email').value);
+  const caseId = normalize(document.getElementById('caseid').value);
+
+  const box = document.getElementById('result');
+  const txt = document.getElementById('resultText');
+
+  try {
+    const res  = await fetch('https://opensheet.elk.sh/1_mUxHK6iXozkkeyZ8YV82AUUe0BQe4uqc-blRuD6yhU/progress');
+    const data = await res.json();
+
+    const row = data.find(r =>
+      normalize(r['案件編號']) === caseId &&
+      normalize(r['電子信箱']) === email
+    );
+
+    if (row) {
+      const note = (row['備註'] || '').replaceAll('\\n','<br/>');
+      txt.innerHTML = `🔍 案件狀態：<strong>${row['案件狀態']}</strong><br/>📝 備註：${note || '—'}`;
+    } else {
+      txt.innerHTML = '<span style="color:red;">查無此案件，請確認輸入正確（請使用半形英數）。</span>';
+    }
+    box.style.display = 'block';
+  } catch (err) {
+    txt.innerHTML = '<span style="color:red;">無法讀取資料，請稍後再試。</span>';
+    box.style.display = 'block';
   }
-  </script>
+}
+</script>
+
 </body>
 </html>
