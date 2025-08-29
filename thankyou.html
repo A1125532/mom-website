@@ -7,68 +7,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>送出成功 - 陳情表單</title>
 
-  <!-- 共用頂欄樣式 -->
+  <!-- 共用頂欄樣式（保留） -->
   <link rel="stylesheet" href="shared/topbar.css">
 
   <style>
-    body {
+    /* 基本樣式 */
+    body{
       font-family: Arial, sans-serif;
       background-color: #f0f8ff;
     }
 
-    /* 內頁容器，控制版寬與上下間距 */
-    .page {
+    /* 版面容器：控制寬度與上下距離（與頂欄距離交給這裡管） */
+    .page{
       max-width: 680px;
-      margin: 0 auto;
+      margin: calc(var(--topbarH) + 40px) auto 40px;
       padding: 0 16px;
-      /* 與頂欄保持距離（頂欄高度 + 額外 40px） */
-      margin-top: calc(var(--topbarH) + 40px);
-      margin-bottom: 40px;
       text-align: center;
     }
 
-    .thankyou-box {
-      background-color: white;
-      padding: 2em;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    .thankyou-box{
+      background-color:#fff;
+      padding:2em;
+      border-radius:12px;
+      box-shadow:0 0 10px rgba(0,0,0,.1);
     }
 
-    .case-id {
-      margin-top: 1.5em;
-      margin-bottom: 1em;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #cc0092;
-      word-break: break-all;
+    .case-id{
+      margin-top:1.5em;
+      margin-bottom:1em;
+      font-size:2rem;
+      font-weight:700;
+      color:#cc0092;
+      word-break:break-all;
     }
 
-    a {
-      display: inline-block;
-      margin-top: 1.5em;
-      text-decoration: none;
-      color: white;
-      background-color: #00993d;
-      padding: 0.8em 1.5em;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background 0.3s ease, transform 0.2s ease;
+    a{
+      display:inline-block;
+      margin-top:1.5em;
+      text-decoration:none;
+      color:#fff;
+      background-color:#00993d;
+      padding:.8em 1.5em;
+      border-radius:8px;
+      font-weight:bold;
+      transition:background .3s ease, transform .2s ease;
     }
-    a:hover { background-color: #007a30; transform: scale(1.05); }
+    a:hover{ background-color:#007a30; transform:scale(1.05); }
 
-    footer {
-      text-align: center;
-      margin-top: 24px;
-      color: #777;
-      font-size: .9em;
+    footer{
+      text-align:center;
+      margin-top:24px;
+      color:#777;
+      font-size:.9em;
     }
+
+    /* 重要：本頁覆蓋共用檔案對 body 的上內距，避免被推兩次 */
+    body{ padding-top:0 !important; }
   </style>
 </head>
 <body>
-  <!-- 綠色導覽列插槽 -->
+  <!-- 綠色頂欄插槽（保留） -->
   <div id="topbar-mount"></div>
 
-  <!-- 頁面內容 -->
   <main class="page">
     <div class="thankyou-box">
       <h1>🎉 表單已成功送出！</h1>
@@ -89,7 +89,7 @@
     </footer>
   </main>
 
-  <!-- 共用頂欄載入腳本 -->
+  <!-- 共用頂欄載入腳本（保留） -->
   <script>
     (function () {
       const mountId = 'topbar-mount';
@@ -103,9 +103,11 @@
             const mount = document.getElementById(mountId);
             if (!mount) return;
             mount.outerHTML = html;
+
             const s = document.createElement('script');
             s.src = p + 'topbar.js';
             document.body.appendChild(s);
+
             if (!document.querySelector('link[href*="topbar.css"]')) {
               const link = document.createElement('link');
               link.rel = 'stylesheet';
