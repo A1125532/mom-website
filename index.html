@@ -1,10 +1,8 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<!-- =========================
-  <head>：字體、RWD、主題色變數與全站樣式
-========================== -->
-<meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="歡迎造訪陳雅惠議員的服務平台，提供線上陳情、進度查詢、政策建議、法律諮詢、
   常見問題解答與 Facebook、Line、Instagram 等社群資訊，亦可看到雅惠的政策主張與為里民爭取的事項，為民眾提供即時互動與關懷。" />
@@ -13,439 +11,191 @@
   <meta name="google-site-verification" content="8HMs7LlgUHkwUll3MveO6eHoZbos3lUZ4tXozo_m8Bc" />
   <title>陳雅惠議員 - 民意交流與服務平台</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet" />
-  
-<style>
-/* --- 主題變數 --- */
-:root{
-  --primary:#00993d; --accent:#e303a4;
-  --radius:14px; --shadow:0 2px 10px rgba(0,0,0,.12);
-  /* 由 JS 動態寫入導覽列高度 */
-  --topbarH:64px;
-}
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #00993d, #4cc66a, #e0ffe5);
+    }
 
-/* --- Reset 與基礎排版 --- */
-*{box-sizing:border-box;margin:0;padding:0}
-html, body { height:100%; }
-body{
-  min-height:100svh; display:flex; flex-direction:column;
-  font-family:'Noto Sans TC',sans-serif; color:#222; background:#fff;
-}
-main{ flex:1; }
-a{color:inherit;text-decoration:none}
+    header {
+      color: white;
+      padding: 80px 20px 30px;
+      text-align: center;
+      animation: fadeDown 1.2s ease-out;
+    }
 
-/* =========================
-  綠色導覽列
-========================== */
-.topbar{
-  position:sticky; top:0; z-index:1000;
-  background:var(--primary); color:#fff;
-  box-shadow:0 4px 16px rgba(0,0,0,.15);
-}
-.nav{
-  max-width:1200px; margin:auto;
-  display:flex; gap:10px; padding:12px 16px; align-items:center; flex-wrap:wrap;
-}
-.brand{font-weight:700;margin-right:auto;font-size:1.25rem}
-.nav-item{position:relative;display:inline-block}
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-.nav a.btn{
-  padding:8px 16px; border-radius:999px; font-weight:700;
-  background:#fff; color:var(--primary); border:2px solid #fff;
-}
-.nav a.btn:hover{ filter:brightness(.95); }
+    header p {
+      font-size: 1.3em;
+      opacity: 0.9;
+    }
 
-.brand{
-  font-weight:700; margin-right:auto; font-size:1.5rem; line-height:1.3;
-}
-.brand .slogan{ font-size:1rem; font-weight:500; color:#f0f0f0; margin-top:2px; }
+    .intro {
+      text-align: center;
+      font-size: 1.2em;
+      color: #444;
+      margin-top: -20px;
+      margin-bottom: 30px;
+    }
 
-/* 桌機下拉說明面板 */
-.dropdown-panel{
-  position:absolute; top:calc(100% + 10px); left:50%;
-  transform:translateX(-50%) translateY(8px);
-  width:320px; max-width:85vw; background:#fff; color:#222;
-  border:1px solid #e6e6e6; border-radius:12px; box-shadow:0 14px 28px rgba(0,0,0,.16);
-  padding:12px 14px; line-height:1.55; font-size:.95rem;
-  opacity:0; visibility:hidden; pointer-events:none;
-  transition:opacity .22s ease, transform .22s ease, visibility .22s; z-index:9999;
-}
-.dropdown-panel::before{
-  content:""; position:absolute; top:-8px; left:50%; transform:translateX(-50%);
-  border-width:8px; border-style:solid; border-color:transparent transparent #fff transparent;
-}
-.nav-item:hover .dropdown-panel,
-.nav-item:focus-within .dropdown-panel{ opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0); }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px;
+      animation: fadeUp 1.2s ease-in-out;
+    }
 
-/* =========================
-  手機：按鈕 + 抽屜（從綠色導覽列底下開始）
-========================== */
-.nav-links{ display:flex; gap:10px; align-items:center; }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 30px;
+      width: 300px;
+      max-width: 90%;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
 
-.hamburger{ display:none; }
-.hamburger{
-  background:transparent; border:none; cursor:pointer;
-  width:44px; height:44px; border-radius:8px; display:grid; place-items:center; margin-left:8px;
-}
-.hamburger span{ display:block; width:22px; height:2px; background:#fff; margin:3px 0; transition:.2s; }
+    .card:hover {
+      transform: translateY(-5px);
+    }
 
-.backdrop{
-  position:fixed; left:0; right:0; bottom:0; top:var(--topbarH);
-  background:rgba(0,0,0,.35); backdrop-filter:saturate(120%) blur(2px);
-  z-index:998; display:none;
-}
-.backdrop.show{ display:block; }
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.5em;
+      color: #00993d;
+    }
 
-.mobile-menu{
-  position:fixed; right:-86%; width:86%; max-width:420px;
-  top:var(--topbarH); height:calc(100% - var(--topbarH));
-  background:#fff; color:#222; box-shadow:-6px 0 20px rgba(0,0,0,.2);
-  z-index:999; display:flex; flex-direction:column; padding:12px 14px 24px;
-  transition:right .25s ease;
-  overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
-  padding-bottom:max(24px, env(safe-area-inset-bottom));
-}
-.mobile-menu.open{ right:0; }
-.mobile-menu-header{
-  position:sticky; top:0; background:#fff; z-index:1;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:6px 6px 10px; border-bottom:1px solid #eee; margin-bottom:6px;
-  font-weight:700; color:#0b6c37;
-}
-.mobile-menu .close{ background:transparent; border:none; font-size:18px; cursor:pointer; line-height:1; }
+    .card p {
+      color: #555;
+      font-size: 1em;
+      line-height: 1.6;
+      margin: 15px 0;
+      text-align: left;
+    }
 
-/* 抽屜內連結 */
-.m-link{
-  display:block; padding:12px; border-radius:10px; margin-top:8px;
-  background:#f7fff9; border:1px solid #d9f2e3; color:#0b6c37; font-weight:700;
-}
-.m-desc{
-  font-size:.92rem; color:#555; line-height:1.6; margin:6px 4px 2px 4px;
-  border-left:3px solid #d9f2e3; padding-left:10px;
-}
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #e303a4;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
 
-/* =========================
-  Hero 輪播
-========================== */
-.hero-wrap{max-width:1200px;margin:20px auto;padding:0 16px}
-.carousel{
-  position:relative; overflow:hidden; border-radius:20px; box-shadow:0 12px 30px rgba(0,0,0,.12);
-  aspect-ratio:16/ 7.95; background:#ddd; /* 改照片上下寬度 */
-}
-.slide{position:absolute; inset:0; opacity:0; transition:opacity .6s ease}
-.slide img{width:100%; height:100%; object-fit:cover; display:block}
-.slide.active{opacity:1}
-.slide .label{
-  position:absolute; top:14px; left:14px;
-  background:rgba(255,255,255,.95); color:#17583a; border:1px solid rgba(0,0,0,.08);
-  padding:6px 10px; border-radius:999px; font-weight:700; font-size:.92rem;
-}
-.slide .caption{
-  position:absolute; left:0; right:0; bottom:0;
-  background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.5) 70%);
-  color:#fff; padding:30px 18px 16px; font-size:1rem; line-height:1.5;
-}
-.ctrl{
-  position:absolute; top:50%; transform:translateY(-50%);
-  background:rgba(0,0,0,.45); color:#fff; border:none; width:44px; height:44px; border-radius:50%;
-  display:grid; place-items:center; cursor:pointer;
-}
-.ctrl:hover{background:rgba(0,0,0,.65)}
-.ctrl.prev{left:12px} .ctrl.next{right:12px}
-.dots{position:absolute; left:0; right:0; bottom:10px; display:flex; justify-content:center; gap:8px}
-.dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.6);border:1px solid rgba(0,0,0,.2);cursor:pointer}
-.dot.active{background:#fff}
+    .btn:hover {
+      background: #a30076;
+      transform: scale(1.02);
+    }
 
-/* =========================
-  最新公告（桌機 3 欄；手機 1 欄）
-========================== */
-.section{max-width:1200px;margin:20px auto;padding:0 16px}
-.bulletin h2{margin:4px 0 12px;color:#165a2e}
-.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .note {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 1em;
+      color: #333;
+      padding: 0 20px;
+      line-height: 1.6;
+    }
 
-/* 卡片 */
-.news{
-  display:block; background:#fff; border-radius:12px;
-  box-shadow:var(--shadow); padding:14px 16px; color:inherit;
-}
-a.news{ text-decoration:none; transition:transform .15s ease, box-shadow .15s ease, background .15s ease; cursor:pointer; }
-a.news:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.18); }
-a.news:active{ transform:translateY(-1px) scale(.998); }
-a.news:focus-visible{ outline:3px solid #1b5e3a; outline-offset:2px; }
-.news.is-static{ cursor:default; }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      line-height: 1.6;
+      font-size: 0.9em;
+    }
 
-.badge{display:inline-block;background:#eaf8ef;color:#0a7a36;border:1px solid #bfe7cc;border-radius:999px;padding:3px 8px;font-size:.82rem;margin-bottom:6px}
-.news .title{ font-weight:700; color:#1b5e3a; }
-.news .desc{ font-size:.9rem; color:#444; line-height:1.5; margin-top:6px; }
-.meta{font-size:.86rem;color:#666;margin-top:4px}
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-/* =========================
-  Footer
-========================== */
-footer{
-  background:#333;color:#fff;text-align:center;padding:16px;
-  line-height:1.6;font-size:.95em; margin-top:auto;
-}
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-/* =========================
-  手機樣式（≤900px）
-  - 隱藏桌機選單、顯示右側「查看更多」按鈕
-  - 標題分兩行
-  - 公告一行一個
-========================== */
-@media (max-width:900px){
-  .nav-links{ display:none !important; }
-  .dropdown-panel{ display:none !important; }
-
-  .nav{ flex-wrap:nowrap; align-items:center; }
-  .brand{ margin-right:0; flex:1 1 auto; min-width:0; white-space:normal; line-height:1.25; }
-
-  .hamburger{
-    display:inline-flex; align-items:center; gap:6px;
-    width:auto; height:auto; margin-left:auto;
-    padding:10px 14px; background:#fff; color:var(--primary);
-    border:2px solid #fff; border-radius:999px; box-shadow:0 1px 6px rgba(0,0,0,.08);
-    font-weight:700; line-height:1;
-  }
-  .hamburger span{ display:none; }
-  .hamburger::after{ content:"查看更多 ▸"; }
-  .hamburger:hover{ filter:brightness(.95); }
-  .hamburger:focus-visible{ outline:3px solid #1b5e3a; outline-offset:2px; }
-
-  /* ✅ 手機：公告一行一個 */
-  .bgrid{ grid-template-columns:1fr; }
-}
-
-/* 手機專用換行標記 */
-.m-br{ display:none; }
-@media (max-width:900px){
-  .m-br{ display:inline; }
-  .m-br::after{ content:"\A"; white-space:pre; }
-}
-
-/* =========================
-  桌機：導覽列上下 Padding 與下方留白
-========================== */
-@media (min-width:901px){
-  .nav{ padding:20px 16px; }
-  .topbar{ margin-bottom:10px; }
-  .nav-links{ display:flex !important; }
-  .hamburger{ display:none !important; }
-}
-</style>
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2em;
+      }
+      .card {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- =========================
-  頁首：綠色導覽列
-========================== -->
-<div class="topbar">
-  <nav class="nav" aria-label="主選單">
-    <div class="brand">
-      陳雅惠議員<span class="m-br"></span>民意交流與服務平台
-      <div class="slogan">為民服務 × 政策參與 × 進度透明</div>
-    </div>
+  <header>
+    <h1>陳雅惠議員-民意交流與服務平台</h1>
+    <p>為民服務 × 政策參與 × 進度透明</p>
+  </header>
 
-    <!-- 桌機選單 -->
-    <div class="nav-links">
-      <div class="nav-item">
-        <a class="btn" href="about.html">⭐ 關於議員</a>
-        <div class="dropdown-panel">想更認識陳雅惠議員的經歷、理念與社群參與？歡迎點進來看看她的故事與行動！</div>
-      </div>
-      <div class="nav-item">
-        <a class="btn" href="faq.html">📌 常見問題</a>
-        <div class="dropdown-panel">在日常生活中遇到什麼問題？我們整理常見問題供您參考。</div>
-      </div>
-      <div class="nav-item">
-        <a class="btn" href="legal-time.html">⚖️ 法律諮詢</a>
-        <div class="dropdown-panel">生活遇到法律問題需要幫助嗎？我們提供免費初步諮詢，協助您釐清權益與對策。</div>
-      </div>
-      <div class="nav-item">
-        <a class="btn" href="contact.html">📬 陳情服務</a>
-        <div class="dropdown-panel">如果您遇到民生、交通、環境等問題，歡迎透過表單陳情，我們將盡快處理。</div>
-      </div>
-      <div class="nav-item">
-        <a class="btn" href="proposal.html">💡 政見建議</a>
-        <div class="dropdown-panel">您希望議員在議會推動什麼政策嗎？歡迎提供想法與建議，我們將認真參考。</div>
-      </div>
-      <div class="nav-item">
-        <a class="btn" href="track.html">🔍 案件進度</a>
-        <div class="dropdown-panel">查詢您已提交的陳情案件處理進度，需輸入案件編號與電子信箱。</div>
-      </div>
-    </div>
-
-    <!-- 手機：右側按鈕（文字由 CSS 產生） -->
-    <button class="hamburger" id="menuToggle" aria-label="開啟選單" aria-controls="mobileMenu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-</div>
-
-<!-- =========================
-  手機抽屜選單 + 背景遮罩
-========================== -->
-<div class="backdrop" id="backdrop"></div>
-<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
-  <div class="mobile-menu-header">
-    <span>選單</span>
-    <button class="close" id="menuClose" aria-label="關閉選單">✕</button>
+  <div class="intro">
+    💬 「傾聽每一個聲音，守護在地的每一天。」
   </div>
 
-  <a class="m-link" href="about.html">⭐ 關於議員</a>
-  <p class="m-desc">想更認識陳雅惠議員的經歷、理念與社群參與？歡迎點進來看看她的故事與行動！</p>
+  <section class="cards" style="justify-content: center;">
+    <div class="card">
+      <h3>⭐ 陳雅惠議員</h3>
+      <p>想更認識陳雅惠議員的經歷、理念與社群參與？歡迎點進來看看她的故事與行動！</p>
+      <a href="about.html" class="btn">進一步了解</a>
+    </div>
 
-  <a class="m-link" href="faq.html">📌 常見問題</a>
-  <p class="m-desc">在日常生活中遇到什麼問題？我們整理常見問題供您參考。</p>
+    <div class="card">
+      <h3>📌 常見問題</h3>
+      <p>在日常生活中遇到什麼問題？我們整理常見問題供您參考。</p>
+      <a href="faq.html" class="btn">查看問答</a>
+    </div>
 
-  <a class="m-link" href="legal-time.html">⚖️ 法律諮詢</a>
-  <p class="m-desc">生活遇到法律問題需要幫助嗎？我們提供免費初步諮詢，協助您釐清權益與對策。</p>
-
-  <a class="m-link" href="contact.html">📬 陳情服務</a>
-  <p class="m-desc">如果您遇到民生、交通、環境等問題，歡迎透過表單陳情，我們將盡快處理。</p>
-
-  <a class="m-link" href="proposal.html">💡 政見建議</a>
-  <p class="m-desc">您希望議員在議會推動什麼政策嗎？歡迎提供想法與建議，我們將認真參考。</p>
-
-  <a class="m-link" href="track.html">🔍 案件進度</a>
-  <p class="m-desc">查詢您已提交的陳情案件處理進度，需輸入案件編號與電子信箱。</p>
-</aside>
-
-<main>
-  <!-- Hero 輪播 -->
-  <section class="hero-wrap" aria-label="重點照片">
-    <div class="carousel" id="carousel">
-      <div class="slide active">
-        <img src="images/slide1.jpg" alt="服務處外觀">
-        <span class="label">陳雅惠議員</span>
-        <div class="caption">傾聽每一個聲音，守護在地的每一天。</div>
-      </div>
-      <div class="slide">
-        <img src="images/slide2.jpg" alt="議會質詢片段">
-        <span class="label">議會質詢片段</span>
-        <div class="caption">針對民生、交通、教育等議題積極監督與建言，爭取在地建設。</div>
-      </div>
-      <div class="slide">
-        <img src="images/slide3.jpg" alt="里內活動合照">
-        <span class="label">社區活動</span>
-        <div class="caption">與里民一起參與環境清潔、關懷長者等活動，連結社區向心力。</div>
-      </div>
-
-      <button class="ctrl prev" aria-label="上一張" id="prev">&#10094;</button>
-      <button class="ctrl next" aria-label="下一張" id="next">&#10095;</button>
-      <div class="dots" id="dots"></div>
+    <div class="card">
+      <h3>⚖️ 法律諮詢</h3>
+      <p>生活遇到法律問題需要幫助嗎？我們提供免費初步諮詢，協助您釐清權益與對策。</p>
+      <a href="legal-time.html" class="btn">諮詢時間</a>
+    </div>
+  </section>
+  
+  <section class="cards">
+    <div class="card">
+      <h3>📬 陳情服務</h3>
+      <p>如果您遇到民生、交通、環境等問題，歡迎透過表單陳情，我們將盡快處理。</p>
+      <a href="contact.html" class="btn">填寫陳情表單</a>
+    </div>
+    <div class="card">
+      <h3>💡 政見建議</h3>
+      <p>您希望議員在議會推動什麼政策嗎？歡迎提供想法與建議，我們將認真參考。</p>
+      <a href="proposal.html" class="btn">提出政見建議</a>
+    </div>
+    <div class="card">
+      <h3>🔍 案件進度查詢</h3>
+      <p>查詢您已提交的陳情案件處理進度，需輸入案件編號與電子信箱。</p>
+      <a href="track.html" class="btn">查詢案件進度</a>
     </div>
   </section>
 
-  <!-- 最新公告 -->
-  <section class="section bulletin">
-    <h2>📣 最新公告</h2>
-    <div class="bgrid">
+  <p class="note">
+    若您有任何建議或需求，歡迎透過平台留言，我們會盡快為您處理。<br>
+    感謝您的關心與支持！
+  </p>
 
-      <!-- 非連結的卡片 -->
-      <div class="news is-static">
-        <span class="badge">服務處公告</span>
-        <div class="title">每週五服務處提供免費的法律諮詢服務</div><br>
-        <div class="desc">生活遇到法律問題需要幫助嗎？我們提供免費初步諮詢，協助您釐清權益與對策。<br><br>
-          👉 想了解更多，請到「⚖️ 法律諮詢」頁面查看！
-        </div><br>
-        <div class="meta">2025-08-29 · 陳雅惠議員服務處</div>
-      </div>
+  <footer>
+    &copy; 陳雅惠議員服務團隊<br>
+    服務處地址：台中市南區正義街236號<br>
+    聯絡電話：04-2282-4639
+  </footer>
 
-      <!-- 可點連結的卡片 -->
-      <a class="news" href="https://reurl.cc/oYvXDl">
-        <span class="badge">新聞</span>
-        <div class="title">帶狀皰疹後遺症強 民眾盼中市府跟進疫苗補助</div><br>
-        <div class="desc">點一下看更多</div><br>
-        <div class="meta">2025-08-11 · 大紀元記者黃玉燕台灣台中報導</div>
-      </a>
-
-      <a class="news" href="https://reurl.cc/dap8rk">
-        <span class="badge">新聞</span>
-        <div class="title">豪雨釀災！陳雅惠、江肇國挺進台南 協助居民清理家園</div><br>
-        <div class="desc">點一下看更多</div><br>
-        <div class="meta">2025-08-04 · 民視新聞網</div>
-      </a>
-    </div>
-  </section>
-</main>
-
-<footer>
-  &copy; 陳雅惠議員服務團隊<br>
-  服務處地址：台中市南區正義街236號<br>
-  聯絡電話：04-2282-4639
-</footer>
-
-<script>
-/* 量測導覽列高度，寫入 CSS 變數（抽屜/遮罩從底下開始） */
-(function(){
-  function setTopbarH(){
-    const tb = document.querySelector('.topbar');
-    if(!tb) return;
-    const h = Math.round(tb.getBoundingClientRect().height);
-    document.documentElement.style.setProperty('--topbarH', h + 'px');
-  }
-  setTopbarH();
-  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(setTopbarH); }
-  window.addEventListener('resize', setTopbarH);
-  window.addEventListener('orientationchange', setTopbarH);
-})();
-
-/* 輪播 */
-(function(){
-  const root = document.getElementById('carousel');
-  const slides = Array.from(root.querySelectorAll('.slide'));
-  const prev = root.querySelector('#prev');
-  const next = root.querySelector('#next');
-  const dotsEl = root.querySelector('#dots');
-  let i=0, timer;
-
-  function go(n){
-    slides[i].classList.remove('active'); dotsEl.children[i]?.classList.remove('active');
-    i=(n+slides.length)%slides.length;
-    slides[i].classList.add('active'); dotsEl.children[i]?.classList.add('active');
-  }
-  function auto(){ timer=setInterval(()=>go(i+1),5000); }
-  function stop(){ clearInterval(timer); }
-
-  slides.forEach((_,idx)=>{
-    const d=document.createElement('button');
-    d.className='dot'+(idx===0?' active':'');
-    d.addEventListener('click',()=>{stop();go(idx);auto();});
-    dotsEl.appendChild(d);
-  });
-  prev.addEventListener('click',()=>{stop();go(i-1);auto();});
-  next.addEventListener('click',()=>{stop();go(i+1);auto();});
-  root.addEventListener('mouseenter',stop);
-  root.addEventListener('mouseleave',auto);
-  auto();
-})();
-
-/* 手機抽屜 */
-(function(){
-  const btn = document.getElementById('menuToggle');
-  const menu = document.getElementById('mobileMenu');
-  const backdrop = document.getElementById('backdrop');
-  const closeBtn = document.getElementById('menuClose');
-
-  function openMenu(){
-    menu.classList.add('open'); backdrop.classList.add('show');
-    btn.setAttribute('aria-expanded','true'); menu.setAttribute('aria-hidden','false');
-    // 鎖背景滾動（抽屜本身可滑動）
-    document.documentElement.style.overflow='hidden'; document.body.style.overflow='hidden';
-  }
-  function closeMenu(){
-    menu.classList.remove('open'); backdrop.classList.remove('show');
-    btn.setAttribute('aria-expanded','false'); menu.setAttribute('aria-hidden','true');
-    document.documentElement.style.overflow=''; document.body.style.overflow='';
-  }
-
-  btn.addEventListener('click', () => {
-    if(menu.classList.contains('open')){ closeMenu(); } else { openMenu(); }
-  });
-  closeBtn.addEventListener('click', closeMenu);
-  backdrop.addEventListener('click', closeMenu);
-  document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
-  document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click', closeMenu));
-})();
-</script>
 </body>
 </html>
