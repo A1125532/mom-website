@@ -109,8 +109,11 @@
         }
         const mount = document.getElementById(mountId);
         if (mount) {
-          mount.innerHTML = '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
-            '無法載入 <code>shared/topbar.html</code>。請確認路徑或以伺服器方式開啟' +
+          mount.innerHTML =
+            '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
+            '無法載入 <code>shared/topbar.html</code>。請確認：<br>' +
+            '1) 以伺服器方式開啟（Live Server / localhost）<br>' +
+            '2) 此頁相對於 <code>/shared</code> 的路徑層級是否正確' +
             '</div>';
         }
       }
@@ -256,3 +259,4 @@
 
 </body>
 </html>
+
