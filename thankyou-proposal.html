@@ -37,12 +37,15 @@
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 
-  /* 關鍵：讓白框寬度更大 */
-  max-width: 600px;   /* ← 你可以試 720px、760px 或 800px，看哪個最接近右邊那張 */
+  max-width: 760px;   /* ← 調成你想要的寬度 */
   margin: 0 auto;
-  text-align: center;
+  text-align: center; /* 預設內容置中 */
 }
-    .thankyou-box h1 { text-align: left; }
+
+.thankyou-box h1 {
+  text-align: center;  /* 標題也置中 */
+  margin-bottom: 1em;
+}
 
     .note {
       margin-top: 1.5em;
@@ -146,6 +149,7 @@
   </main>
 </body>
 </html>
+
 
 
 
