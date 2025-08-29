@@ -7,17 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>送出成功 - 陳情表單</title>
 
-  <!-- 共用頂欄樣式（保留） -->
+  <!-- 共用頂欄樣式 -->
   <link rel="stylesheet" href="shared/topbar.css">
 
   <style>
-    /* 基本樣式 */
+    /* ====== 本頁樣式（不動共用檔） ====== */
     body{
       font-family: Arial, sans-serif;
       background-color: #f0f8ff;
+      /* 抵消共用 topbar.css 對 body 的 padding-top，改由 .page 控制與頂欄距離 */
+      padding-top: 0 !important;
     }
 
-    /* 版面容器：控制寬度與上下距離（與頂欄距離交給這裡管） */
+    /* 版面容器：控制寬度與上下距離 */
     .page{
       max-width: 680px;
       margin: calc(var(--topbarH) + 40px) auto 40px;
@@ -61,12 +63,35 @@
       font-size:.9em;
     }
 
-    /* 重要：本頁覆蓋共用檔案對 body 的上內距，避免被推兩次 */
-    body{ padding-top:0 !important; }
+    /* ====== 覆寫：讓 6 顆按鈕不換行（桌機） ====== */
+    @media (min-width:901px){
+      .topbar .nav{ flex-wrap: nowrap !important; }
+      .topbar .nav-links{
+        display:flex !important;
+        flex-wrap:nowrap !important;
+        white-space:nowrap;
+        gap:10px;
+      }
+    }
+
+    /* ====== 覆寫：標題可點但外觀不變 ====== */
+    .topbar .brand,
+    .topbar .brand:link,
+    .topbar .brand:visited,
+    .topbar .brand:hover,
+    .topbar .brand:focus,
+    .topbar .brand:active{
+      color:#fff;
+      text-decoration:none;
+      outline:none;
+      box-shadow:none;
+      filter:none;
+    }
+    .topbar .brand{ -webkit-tap-highlight-color:transparent; }
   </style>
 </head>
 <body>
-  <!-- 綠色頂欄插槽（保留） -->
+  <!-- 綠色導覽列插槽（由本頁腳本載入 shared/topbar.html + topbar.js） -->
   <div id="topbar-mount"></div>
 
   <main class="page">
@@ -89,7 +114,7 @@
     </footer>
   </main>
 
-  <!-- 共用頂欄載入腳本（保留） -->
+  <!-- 載入共用頂欄 HTML/JS（多路徑相容） -->
   <script>
     (function () {
       const mountId = 'topbar-mount';
@@ -102,6 +127,7 @@
             const html = await res.text();
             const mount = document.getElementById(mountId);
             if (!mount) return;
+
             mount.outerHTML = html;
 
             const s = document.createElement('script');
