@@ -7,57 +7,64 @@
   <title>陳情表單 - 陳雅惠議員服務團隊</title>
   <link rel="stylesheet" href="shared/topbar.css">
   <style>
+    /* 保留 body 底色與字體，避免壓掉 topbar.css 的 padding-top */
     body{
-      font-family:Arial, sans-serif;
-      padding:2em;
-      max-width:600px;
-      margin:auto;
+      font-family: Arial, sans-serif;
       background:#f9f9f9;
     }
-    h1{text-align: center; color: #00993d;}
-    form{
+    /* 用 .page 包內容，承接原本的 margin/padding */
+    .page{
+      max-width:600px;
+      margin:0 auto;
+      padding:2em;
+    }
+
+    h1{ text-align:center; color:#00993d; }
+
+    .page form{
       background:#fff;
       padding:1.5em;
       border-radius:10px;
       box-shadow:0 0 10px rgba(0,0,0,.1);
     }
-    label{display:block;margin-top:1em;font-weight:bold;}
-    input,textarea,select{
-      width:100%;
-      padding:.6em;
-      margin-top:.3em;
-      border:1px solid #ccc;
+    .page form label{
+      display:block; margin-top:1em; font-weight:bold;
+    }
+    .page form input,
+    .page form textarea,
+    .page form select{
+      width:100%; padding:.6em; margin-top:.3em;
+      border:1px solid #ccc; border-radius:5px;
+      font:inherit;
+    }
+    .page form button{
+      margin-top:1.5em;
+      padding:.8em;
+      background:#00993d;
+      color:#fff;
+      border:none;
       border-radius:5px;
+      width:100%;
+      font-size:1em;
+      cursor:pointer;
+      transition:background .3s ease, transform .2s ease;
     }
-    button {
-      margin-top: 1.5em;
-      padding: 0.8em;
-      background: #00993d;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      width: 100%;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
+    .page form button:hover{
+      background:#007a30;
+      transform:scale(1.02);
     }
-    button:hover {
-      background: #007a30;
-      transform: scale(1.02);
+
+    .sending-text{
+      text-align:center; color:#666;
+      font-weight:bold; margin-top:1em;
+      display:none; animation:fadeIn .6s ease-in-out;
     }
-    .sending-text {
-      text-align: center;
-      color: #666;
-      font-weight: bold;
-      margin-top: 1em;
-      display: none;
-      animation: fadeIn 0.6s ease-in-out;
+    @keyframes fadeIn{
+      from{ opacity:0; transform:translateY(10px);}
+      to{ opacity:1; transform:translateY(0);}
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    footer{
+
+    .page footer{
       text-align:center;
       margin-top:2em;
       color:#777;
@@ -68,198 +75,179 @@
 <body>
 
   <!-- 這個占位會被替換成共用的綠色導覽列 -->
-<div id="topbar-mount"></div>
+  <div id="topbar-mount"></div>
 
-<script>
-  // 自動嘗試多個路徑前綴，兼容根目錄與子資料夾頁面
-  (function () {
-    const mountId = 'topbar-mount';
-    const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
-
-    async function tryLoad() {
-      for (const p of prefixes) {
-        try {
-          const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
-          if (!res.ok) continue;
-
-          const html = await res.text();
-          const mount = document.getElementById(mountId);
-          if (!mount) return;
-
-          // 插入 HTML
-          mount.outerHTML = html;
-
-          // 確保 JS 載入
-          const s = document.createElement('script');
-          s.src = p + 'topbar.js';
-          document.body.appendChild(s);
-
-          // 若你忘了在 <head> 引入 CSS，這裡也補上一份（避免 404 時重複）
-          if (!document.querySelector('link[href*="topbar.css"]')) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = p + 'topbar.css';
-            document.head.appendChild(link);
-          }
-          return; // 成功就結束
-        } catch (e) {}
+  <script>
+    (function () {
+      const mountId = 'topbar-mount';
+      const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
+      async function tryLoad() {
+        for (const p of prefixes) {
+          try {
+            const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
+            if (!res.ok) continue;
+            const html = await res.text();
+            const mount = document.getElementById(mountId);
+            if (!mount) return;
+            mount.outerHTML = html;
+            const s = document.createElement('script');
+            s.src = p + 'topbar.js';
+            document.body.appendChild(s);
+            if (!document.querySelector('link[href*="topbar.css"]')) {
+              const link = document.createElement('link');
+              link.rel = 'stylesheet';
+              link.href = p + 'topbar.css';
+              document.head.appendChild(link);
+            }
+            return;
+          } catch(e){}
+        }
+        const mount = document.getElementById(mountId);
+        if (mount) {
+          mount.innerHTML = '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
+            '無法載入 <code>shared/topbar.html</code>。請確認路徑或以伺服器方式開啟' +
+            '</div>';
+        }
       }
-      // 全部失敗 → 在頁面顯示提示，方便排錯
-      const mount = document.getElementById(mountId);
-      if (mount) {
-        mount.innerHTML =
-          '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
-          '無法載入 <code>shared/topbar.html</code>。請確認：<br>' +
-          '1) 以伺服器方式開啟（Live Server / localhost）<br>' +
-          '2) 此頁相對於 <code>/shared</code> 的路徑層級是否正確' +
-          '</div>';
-      }
-    }
+      tryLoad();
+    })();
+  </script>
 
-    tryLoad();
-  })();
-</script>
-
-<h1>📬 陳情表單</h1>
-<p style="text-align:center;">
-  請留下您的聯絡資訊與需求<br>
-  您可於服務平台首頁點選「🔍 案件進度查詢」查看案件進度
-</p>
-
-<form id="petitionForm">
-  <!-- ⚠ 注意事項 -->
-  <section style="background:#fff0f0;border:1px solid #ffcccc;padding:1em;margin-bottom:2em;">
-    <h3 style="color:#cc0000;text-align:left;">⚠ 注意事項</h3>
-    <p style="margin-top:0.5em; margin-bottom:1em; color:#cc0000; font-weight:bold; font-size:1.17em; line-height:1.4;">
-      <strong>請您先詳讀下列使用說明後再登錄案件</strong>
+  <div class="page">
+    <h1>📬 陳情表單</h1>
+    <p style="text-align:center;">
+      請留下您的聯絡資訊與需求<br>
+      您可於服務平台首頁點選「🔍 案件進度查詢」查看案件進度
     </p>
-    <ol style="padding-left:1.2em;text-align:left;">
-      <li>『*』欄位務必輸入。</li>
-      <li>檢舉人基本資料將採保密方式處理，但因業務需要，承辦機關得調閱陳情人基本資料以供處理。</li>
-      <li>內容應具體列舉事證，否則將不予處理或不予受理。</li>
-      <li>與市政無關建議、謾罵、惡意攻擊將不予處理。</li>
-      <li style="color:#cc0000;"><strong>若姓名、地址、聯絡資料虛報，將不予處理。</strong></li>
-    </ol>
-    <div style="margin-top:1em;display:flex;align-items:center;">
-      <label for="agree" style="display:flex;align-items:center;">
-        <input type="checkbox" id="agree" name="agree" required style="margin-right:.5em;">
-        <span style="white-space:nowrap;">我已閱讀注意事項並同意</span>
-      </label>
-    </div>
-  </section>
 
-  <input type="hidden" name="案件編號" id="caseIdInput">
-  <label for="name">姓名 *</label>
-  <input type="text" id="name" name="姓名" required>
+    <form id="petitionForm">
+      <!-- 注意事項區塊 -->
+      <section style="background:#fff0f0;border:1px solid #ffcccc;padding:1em;margin-bottom:2em;">
+        <h3 style="color:#cc0000;text-align:left;">⚠ 注意事項</h3>
+        <p style="margin-top:0.5em; margin-bottom:1em; color:#cc0000; font-weight:bold; font-size:1.17em; line-height:1.4;">
+          <strong>請您先詳讀下列說明後再登錄案件</strong>
+        </p>
+        <ol style="padding-left:1.2em;text-align:left;">
+          <li>『*』欄位務必輸入。</li>
+          <li>檢舉人基本資料將採保密方式處理，但因業務需要，承辦機關得調閱陳情人基本資料以供處理。</li>
+          <li>內容應具體列舉事證，否則將不予處理或不予受理。</li>
+          <li>與市政無關建議、謾罵、惡意攻擊將不予處理。</li>
+          <li style="color:#cc0000;"><strong>若姓名、地址、聯絡資料虛報，將不予處理。</strong></li>
+        </ol>
+        <div style="margin-top:1em;display:flex;align-items:center;">
+          <label for="agree" style="display:flex;align-items:center;">
+            <input type="checkbox" id="agree" name="agree" required style="margin-right:.5em;">
+            <span style="white-space:nowrap;">我已閱讀注意事項並同意</span>
+          </label>
+        </div>
+      </section>
 
-  <label for="gender">性別 *</label>
-  <select id="gender" name="性別" required>
-    <option value="">請選擇</option>
-    <option value="男士">男士</option>
-    <option value="女士">女士</option>
-  </select>
+      <!-- 其餘欄位照舊 -->
+      <input type="hidden" name="案件編號" id="caseIdInput">
+      <label for="name">姓名 *</label>
+      <input type="text" id="name" name="姓名" required>
 
-  <label for="phone">聯絡電話 *</label>
-  <input type="tel" id="phone" name="電話" required>
+      <label for="gender">性別 *</label>
+      <select id="gender" name="性別" required>
+        <option value="">請選擇</option>
+        <option value="男士">男士</option>
+        <option value="女士">女士</option>
+      </select>
 
-  <label for="mailing">通訊地址 *</label>
-  <input type="text" id="mailing" name="通訊地址" required>
+      <label for="phone">聯絡電話 *</label>
+      <input type="tel" id="phone" name="電話" required>
 
-  <label for="email">電子信箱 *</label>
-  <input type="email" id="email" name="電子信箱" required>
+      <label for="mailing">通訊地址 *</label>
+      <input type="text" id="mailing" name="通訊地址" required>
 
-  <label for="region">案件發生行政區 *</label>
-  <select id="region" name="行政區" required>
-    <option value="">請選擇</option>
-    <option value="東區">東區</option>
-    <option value="南區">南區</option>
-    <option value="跨區">跨區</option>
-    <option value="不明">不明</option>
-  </select>
+      <label for="email">電子信箱 *</label>
+      <input type="email" id="email" name="電子信箱" required>
 
-  <label for="address">案件發生地址 *</label>
-  <input type="text" id="address" name="詳細地址" required>
+      <label for="region">案件發生行政區 *</label>
+      <select id="region" name="行政區" required>
+        <option value="">請選擇</option>
+        <option value="東區">東區</option>
+        <option value="南區">南區</option>
+        <option value="跨區">跨區</option>
+        <option value="不明">不明</option>
+      </select>
 
-  <label for="landmark">地標（如：XX便利商店旁、XX市場對面）（選填）</label>
-  <input type="text" id="landmark" name="地標">
+      <label for="address">案件發生地址 *</label>
+      <input type="text" id="address" name="詳細地址" required>
 
-  <label for="message">陳情內容 *</label>
-  <textarea id="message" name="陳情內容" rows="6" required></textarea>
+      <label for="landmark">地標（如：XX便利商店旁、XX市場對面）（選填）</label>
+      <input type="text" id="landmark" name="地標">
 
-  <label for="note">補充說明（選填）</label>
-  <textarea id="note" name="補充說明" rows="4"></textarea>
+      <label for="message">陳情內容 *</label>
+      <textarea id="message" name="陳情內容" rows="6" required></textarea>
 
-  <label style="margin-top:1em;">相關附件</label>
-  <p style="margin-top:.3em;font-size:.9em;color:#555;">
-    若需要附加檔案，請在收到載有「案件編號」的確認郵件後，<br>
-    直接回覆該封 Gmail 並附上檔案，我們將協助歸檔處理。
-  </p>
+      <label for="note">補充說明（選填）</label>
+      <textarea id="note" name="補充說明" rows="4"></textarea>
 
-  <button type="submit">送出表單</button>
-</form>
+      <label style="margin-top:1em;">相關附件</label>
+      <p style="margin-top:.3em;font-size:.9em;color:#555;">
+        若需要附加檔案，請在收到載有「案件編號」的確認郵件後，<br>
+        直接回覆該封 Gmail 並附上檔案，我們將協助歸檔處理。
+      </p>
 
-<p class="sending-text" id="sendingText">寄件中，請稍等...</p>
+      <button type="submit">送出表單</button>
+    </form>
 
-<footer>
-  © 陳雅惠議員服務團隊<br>
-  服務處地址:台中市南區正義街236號<br>
-  聯絡電話：04-2282-4639
-</footer>
+    <p class="sending-text" id="sendingText">寄件中，請稍等...</p>
 
-<script>
-document.getElementById("petitionForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
+    <footer>
+      © 陳雅惠議員服務團隊<br>
+      服務處地址:台中市南區正義街236號<br>
+      聯絡電話：04-2282-4639
+    </footer>
+  </div>
 
-  const form = e.target;
-  const fd   = new FormData(form);
-  const sendingText = document.getElementById("sendingText");
-  sendingText.style.display = "block"; // 顯示送出提示
+  <script>
+  document.getElementById("petitionForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const fd   = new FormData(form);
+    const sendingText = document.getElementById("sendingText");
+    sendingText.style.display = "block";
 
-  const rand  = Math.random().toString(36).slice(2, 5).toUpperCase();
-  const now = new Date();
-  const yyyy = now.getFullYear();
-  const mm = String(now.getMonth() + 1).padStart(2, '0');
-  const dd = String(now.getDate()).padStart(2, '0');
-  const today = `${yyyy}${mm}${dd}`;
-  const caseId = `${rand}-${today}`;
+    const rand  = Math.random().toString(36).slice(2, 5).toUpperCase();
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const dd = String(now.getDate()).padStart(2, '0');
+    const today = `${yyyy}${mm}${dd}`;
+    const caseId = `${rand}-${today}`;
+    fd.set("案件編號", caseId);
+    document.getElementById("caseIdInput").value = caseId;
 
-  fd.set("案件編號", caseId);
-  document.getElementById("caseIdInput").value = caseId;
+    const gsFd = new FormData();
+    gsFd.append("案件編號", caseId);
+    gsFd.append("電子信箱", form.email.value);
+    gsFd.append("案件狀態", "已收件");
+    gsFd.append("備註", "無");
 
-  const gsFd = new FormData();
-  gsFd.append("案件編號", caseId);
-  gsFd.append("電子信箱", form.email.value);
-  gsFd.append("案件狀態", "已收件");
-  gsFd.append("備註", "無");
-
-  fetch("https://script.google.com/macros/s/AKfycbz4TUYV8xSV2cTCTnUR9yiofZkObZ-HCSUx0MfyXnhMysmic71NRPyZUpwVI8kHsQfn/exec", {
-    method:"POST",
-    mode:"no-cors",
-    body:gsFd
-  });
-
-  try {
-    const rsp = await fetch("https://script.google.com/macros/s/AKfycbyF0S5i8CDlN1DS95gbx24SBAF-rNhdCpds_36MHTWe7jNS_KmUdB_b9O4o_C2nUuCR4A/exec", {
-      method:"POST",
-      body:fd
+    fetch("https://script.google.com/macros/s/AKfycbz4TUYV8xSV2cTCTnUR9yiofZkObZ-HCSUx0MfyXnhMysmic71NRPyZUpwVI8kHsQfn/exec", {
+      method:"POST", mode:"no-cors", body:gsFd
     });
 
-    if (rsp.ok) {
-      window.location.href = "thankyou.html?caseId=" + encodeURIComponent(caseId);
-    } else {
-      const err = await rsp.json().catch(() => ({}));
-      alert("送出失敗：" + (err.error || "請稍後再試"));
+    try {
+      const rsp = await fetch("https://script.google.com/macros/s/AKfycbyF0S5i8CDlN1DS95gbx24SBAF-rNhdCpds_36MHTWe7jNS_KmUdB_b9O4o_C2nUuCR4A/exec", {
+        method:"POST", body:fd
+      });
+      if (rsp.ok) {
+        window.location.href = "thankyou.html?caseId=" + encodeURIComponent(caseId);
+      } else {
+        const err = await rsp.json().catch(() => ({}));
+        alert("送出失敗：" + (err.error || "請稍後再試"));
+        sendingText.style.display = "none";
+      }
+    } catch (err) {
+      alert("送出失敗，請確認網路或稍後再試！");
       sendingText.style.display = "none";
+      console.error(err);
     }
-  } catch (err) {
-    alert("送出失敗，請確認網路或稍後再試！");
-    sendingText.style.display = "none";
-    console.error(err);
-  }
-});
-</script>
+  });
+  </script>
 
 </body>
 </html>
-
-
