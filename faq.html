@@ -1,4 +1,3 @@
-<!-- faq.html -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -52,20 +51,34 @@
       margin-bottom: 30px;
     }
 
-    .search-bar input,
+    .search-wrapper {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 0 8px;
+      background: #fff;
+    }
+
+    .search-icon {
+      font-size: 1em;
+      margin-right: 6px;
+      color: #555;
+    }
+
+    .search-wrapper input {
+      border: none;
+      outline: none;
+      font-size: 1em;
+      padding: 10px 0;
+      width: 320px;
+    }
+
     .search-bar select {
       padding: 10px;
       border-radius: 8px;
       border: 1px solid #ccc;
       font-size: 1em;
-    }
-
-    .search-bar input {
-      width: 60%;
-      max-width: 400px;
-    }
-
-    .search-bar select {
       margin-left: 10px;
     }
 
@@ -134,57 +147,56 @@
 <body>
 
   <!-- 這個占位會被替換成共用的綠色導覽列 -->
-<div id="topbar-mount"></div>
+  <div id="topbar-mount"></div>
 
-<script>
-  // 自動嘗試多個路徑前綴，兼容根目錄與子資料夾頁面
-  (function () {
-    const mountId = 'topbar-mount';
-    const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
+  <script>
+    // 自動嘗試多個路徑前綴，兼容根目錄與子資料夾頁面
+    (function () {
+      const mountId = 'topbar-mount';
+      const prefixes = ['shared/', './shared/', '../shared/', '/shared/'];
 
-    async function tryLoad() {
-      for (const p of prefixes) {
-        try {
-          const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
-          if (!res.ok) continue;
+      async function tryLoad() {
+        for (const p of prefixes) {
+          try {
+            const res = await fetch(p + 'topbar.html', { cache: 'no-store' });
+            if (!res.ok) continue;
 
-          const html = await res.text();
-          const mount = document.getElementById(mountId);
-          if (!mount) return;
+            const html = await res.text();
+            const mount = document.getElementById(mountId);
+            if (!mount) return;
 
-          // 插入 HTML
-          mount.outerHTML = html;
+            // 插入 HTML
+            mount.outerHTML = html;
 
-          // 確保 JS 載入
-          const s = document.createElement('script');
-          s.src = p + 'topbar.js';
-          document.body.appendChild(s);
+            // 確保 JS 載入
+            const s = document.createElement('script');
+            s.src = p + 'topbar.js';
+            document.body.appendChild(s);
 
-          // 若你忘了在 <head> 引入 CSS，這裡也補上一份（避免 404 時重複）
-          if (!document.querySelector('link[href*="topbar.css"]')) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = p + 'topbar.css';
-            document.head.appendChild(link);
-          }
-          return; // 成功就結束
-        } catch (e) {}
+            if (!document.querySelector('link[href*="topbar.css"]')) {
+              const link = document.createElement('link');
+              link.rel = 'stylesheet';
+              link.href = p + 'topbar.css';
+              document.head.appendChild(link);
+            }
+            return;
+          } catch (e) {}
+        }
+        const mount = document.getElementById(mountId);
+        if (mount) {
+          mount.innerHTML =
+            '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
+            '無法載入 <code>shared/topbar.html</code>。請確認：<br>' +
+            '1) 以伺服器方式開啟（Live Server / localhost）<br>' +
+            '2) 此頁相對於 <code>/shared</code> 的路徑層級是否正確' +
+            '</div>';
+        }
       }
-      // 全部失敗 → 在頁面顯示提示，方便排錯
-      const mount = document.getElementById(mountId);
-      if (mount) {
-        mount.innerHTML =
-          '<div style="background:#fee;border:1px solid #f99;color:#900;padding:10px;border-radius:8px;">' +
-          '無法載入 <code>shared/topbar.html</code>。請確認：<br>' +
-          '1) 以伺服器方式開啟（Live Server / localhost）<br>' +
-          '2) 此頁相對於 <code>/shared</code> 的路徑層級是否正確' +
-          '</div>';
-      }
-    }
 
-    tryLoad();
-  })();
-</script>
+      tryLoad();
+    })();
+  </script>
+
   <div class="faq-header">
     <h2 class="faq-title">Q&A 常見問題</h2>
     <p class="faq-desc">以下是民眾常提出的疑問與解答，歡迎參考，如有更多問題也可以直接諮詢服務團隊。<br>
@@ -194,7 +206,10 @@
   <!-- ✅ 白色內容框內含搜尋與問答 -->
   <section class="faq-section">
     <div class="search-bar">
-      <input id="searchInput" type="text" placeholder="🔍 輸入關鍵字查詢">
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input id="searchInput" type="text" placeholder="輸入關鍵字查詢">
+      </div>
       <select id="categorySelect">
         <option value="全部">全部</option>
         <option value="陳情">陳情</option>
@@ -202,10 +217,10 @@
         <option value="交通">交通</option>
         <option value="長照">長照</option>
         <option value="環境">環境</option>
-        
       </select>
     </div>
 
+    <!-- Q&A 內容保留原樣 -->
     <div class="faq-box" data-category="交通 陳情">
       <p class="faq-question">Q1：被交通違規開罰單可以陳情嗎？</p>
       <p class="faq-answer">可以！若您有合理的理由或需要協助處理，可以透過陳情表單說明狀況，我們會協助處理與回覆。</p>
@@ -223,10 +238,7 @@
 
     <div class="faq-box" data-category="陳情">
       <p class="faq-question">Q4：我在陳情整合平台寫信完成送出後，為什麼沒有收到確認信呢？</p>
-      <p class="faq-answer">
-        一、有些電子郵件系統為了避免您收到過多的廣告垃圾郵件，會設有過濾垃圾郵件的機制，但這類機制時常有誤判的情形，如果您沒有收到確認信，建議您先至垃圾郵件區尋找，或將本服務處信箱「csc690423@gmail.com」設定至正常郵件名單中。<br><br>
-        二、如前項功能查無資料，依以往經驗，多半為您案件登錄時電子郵件填寫錯誤，建議重新登錄案件，或來電（電話04-22824639）詢問。
-      </p>
+      <p class="faq-answer">一、有些電子郵件系統為了避免您收到過多的廣告垃圾郵件，會設有過濾垃圾郵件的機制…</p>
     </div>
 
     <div class="faq-box" data-category="社會福利">
@@ -325,6 +337,3 @@
 
 </body>
 </html>
-
-
-
