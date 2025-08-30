@@ -398,7 +398,7 @@
     if (item.desc){
       const d = document.createElement('div');
       d.className = 'desc';
-      d.textContent = item.desc;
+      d.innerHTML = (item.desc || '').replace(/\n/g, '<br>');  // 👈 支援 <br> 也支援 \n
       el.appendChild(d);
       el.appendChild(document.createElement('br'));
     }
@@ -467,4 +467,5 @@
 </script>
 </body>
 </html>
+
 
