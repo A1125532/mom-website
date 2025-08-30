@@ -4,7 +4,7 @@ window.NEWS_DATA = [
   {
     title: "每週五服務處提供免費法律諮詢服務",
     desc: "生活遇到法律問題需要幫助嗎？我們提供免費初步諮詢，協助您釐清權益與對策。<br><br>👉 想了解更多，請到「⚖️ 法律諮詢」頁面查看！",
-    date: "2025-08-29",
+    date: "2024-04-01",
     source: "陳雅惠議員服務處",
     categories: ["服務處公告"],
     href: ""
@@ -602,3 +602,4 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
