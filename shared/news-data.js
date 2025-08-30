@@ -210,6 +210,14 @@ window.NEWS_DATA = [
     href: "https://reurl.cc/MzWZlk"
   },
   {
+    title: "民進黨台中市議員陳雅惠等要求衛生局提升長照服務的品質 減輕家庭照顧者壓力",
+    desc: "點一下看更多",
+    date: "2024-05-13",
+    source: "元丰傳媒／林獻元報導",
+    categories: ["議會 / 政策","民生"],
+    href: "https://www.yuanfengmedia.tw/detail.php?type=gallery&id=29138"
+  },
+  {
     title: "兒虐通報紀錄頻繁 陳雅惠：多關心高風險家庭狀況",
     desc: "點一下看更多",
     date: "2024-04-12",
@@ -258,4 +266,5 @@ window.NEWS_DATA = [
     href: "https://www.cmmedia.com.tw/home/articles/39676"
   }
 ];
+
 
