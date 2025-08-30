@@ -178,6 +178,14 @@ window.NEWS_DATA = [
     href: "https://www.ftvnews.com.tw/news/detail/2025212W0528"
   },
   {
+    title: "中市水噹噹關懷協會寒冬送暖 白米物資慰問金助弱勢過好年",
+    desc: "點一下看更多",
+    date: "2025-01-08",
+    source: "中廣新聞網／寇世菁報導",
+    categories: ["在地活動"],
+    href: "https://reurl.cc/2Q7ry9"
+  },
+  {
     title: "議員爆多局處被檢舉職場霸凌　盧秀燕：市府有多元申訴機制",
     desc: "點一下看更多",
     date: "2024-11-29",
@@ -266,5 +274,3 @@ window.NEWS_DATA = [
     href: "https://www.cmmedia.com.tw/home/articles/39676"
   }
 ];
-
-
