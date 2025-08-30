@@ -138,6 +138,14 @@ window.NEWS_DATA = [
     href: "https://www.ftvnews.com.tw/news/detail/2025430W0554"
   },
   {
+    title: "台中市公托不足 民進黨台中市議員陳雅惠批：中市府拖延 家長苦等",
+    desc: "點一下看更多",
+    date: "2025-04-21",
+    source: "元丰傳媒／林獻元報導",
+    categories: ["教育"],
+    href: "https://yuanfengmedia.tw/detail.php?type=lastest&id=40734"
+  },
+  {
     title: "台中1幼兒園驚爆虐童案 議員陳雅惠批「處理慢半拍」籲勿再容忍",
     desc: "點一下看更多",
     date: "2025-04-14",
