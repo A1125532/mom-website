@@ -162,6 +162,14 @@ window.NEWS_DATA = [
     href: "https://www.mypeoplevol.com/2025/yahoo/16681"
   },
   {
+    title: "半小時被搶光！台中綠議員陳雅惠代贈700株樹苗　籲共同美化環境",
+    desc: "點一下看更多",
+    date: "2025-03-05",
+    source: "民視新聞網／顏一軒報導",
+    categories: ["在地活動"],
+    href: "https://finance.ftvnews.com.tw/news/detail/2025305W0529"
+  },
+  {
     title: "「痛車」也來了！台中元宵活動冒雨登場　何欣純：像搭時光機重返童年",
     desc: "點一下看更多",
     date: "2025-02-12",
@@ -250,3 +258,4 @@ window.NEWS_DATA = [
     href: "https://www.cmmedia.com.tw/home/articles/39676"
   }
 ];
+
