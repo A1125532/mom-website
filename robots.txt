@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sparkly-paprenjak-d1a33a.netlify.app/sitemap.xml
