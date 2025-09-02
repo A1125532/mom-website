@@ -1,4 +1,8 @@
+# 代表允許所有搜尋引擎（Google、Bing、Yahoo...）
 User-agent: *
+
+# 允許爬取網站所有路徑。
 Allow: /
 
+# 指定 sitemap 的位置，讓搜尋引擎更快找到。
 Sitemap: https://sparkly-paprenjak-d1a33a.netlify.app/sitemap.xml
