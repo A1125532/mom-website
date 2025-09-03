@@ -298,14 +298,6 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/Taichung/breakingnews/4860029"
   },
   {
-    title: "台中BMW猴無照還疑毒駕撞死人 「與議員是親戚」媽衝分隊長室談遭質疑",
-    desc: "點一下看更多",
-    date: "2024-10-28",
-    source: "鏡週刊／記者謝文哲",
-    categories: ["交通,其他"],
-    href: "https://tw.news.yahoo.com/%E5%8F%B0%E4%B8%ADbmw%E7%8C%B4%E7%84%A1%E7%85%A7%E9%82%84%E7%96%91%E6%AF%92%E9%A7%95%E6%92%9E%E6%AD%BB%E4%BA%BA-%E8%88%87%E8%AD%B0%E5%93%A1%E6%98%AF%E8%A6%AA%E6%88%9A-%E5%AA%BD%E8%A1%9D%E5%88%86%E9%9A%8A%E9%95%B7%E5%AE%A4%E8%AB%87%E9%81%AD%E8%B3%AA%E7%96%91-060500062.html"
-  },
-  {
     title: "盧秀燕親自擔任台中購物節代言人 議員酸市府砸錢造神",
     desc: "點一下看更多",
     date: "2024-10-24",
@@ -602,3 +594,4 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
