@@ -14,7 +14,7 @@ window.SERVICE_DATA = [
     desc: "生活遇到法律問題需要幫助嗎？<br>我們提供免費初步諮詢~<br>有專業律師協助您釐清權益與對策！<br>為了您寶貴時間，諮詢服務採預約制！<br>歡迎大家多多預約利用喔！<br><br>👉 想了解更多，請到「⚖️ 法律諮詢」頁面查看！",
     date: "2024-04-01",
     source: "陳雅惠議員服務處",
-    categories: ["需報名"],
+    categories: ["需預約"],
     href: ""
   }
 ];
@@ -619,3 +619,4 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
