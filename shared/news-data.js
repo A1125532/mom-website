@@ -35,6 +35,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "台中上半年國賠案99件 排水孔、坑洞、路樹最常出事",
+    desc: "點一下看更多",
+    date: "2025-09-04",
+    source: "自由時報／記者蘇孟娟",
+    categories: ["交通"],
+    href: "https://news.ltn.com.tw/news/life/breakingnews/5166383?utm_medium=APP&utm_campaign=SHARE&utm_source=LINE"
+  },
+  {
     title: "綠議員指台中超徵75億元應「還稅於民」　中市府駁：近6年短絀9億元",
     desc: "點一下看更多",
     date: "2025-08-19",
@@ -619,4 +627,5 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
