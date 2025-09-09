@@ -331,6 +331,14 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/Taichung/breakingnews/4860029"
   },
   {
+    title: "中市學校有游泳課僅6成多 議員要求從幼兒園教起",
+    desc: "點一下看更多",
+    date: "2024-10-29",
+    source: "自由時報／記者蘇金鳳",
+    categories: ["教育"],
+    href: "https://news.ltn.com.tw/news/life/breakingnews/4845255"
+  },
+  {
     title: "盧秀燕親自擔任台中購物節代言人 議員酸市府砸錢造神",
     desc: "點一下看更多",
     date: "2024-10-24",
@@ -627,5 +635,6 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
