@@ -71,7 +71,7 @@ window.NEWS_DATA = [
     desc: "點一下看更多",
     date: "2025-08-04",
     source: "民視新聞網／記者顏一軒",
-    categories: ["公共安全"],
+    categories: ["民生","公共安全"],
     href: "https://tw.news.yahoo.com/%E8%B1%AA%E9%9B%A8%E9%87%80%E7%81%BD-%E9%99%B3%E9%9B%85%E6%83%A0-%E6%B1%9F%E8%82%87%E5%9C%8B%E6%8C%BA%E9%80%B2%E5%8F%B0%E5%8D%97-%E5%8D%94%E5%8A%A9%E5%B1%85%E6%B0%91%E6%B8%85%E7%90%86%E5%AE%B6%E5%9C%92-112248190.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAFot3mrRDm3WvOGzVKPNIKI6rGuMzjmYTFzySMFV5qcJ8JuWPAKOdbrKb9S9wNxHJu8HwXJWQGMwLGmlECfiQtypBzGVzzHbp0WqNi80rHCb-pon3QcM9OrdSPZ5TMuR6lJFa97M9TR5LgAMX5aBByXzAlA3yNuX8-S1Zw3w3JwH"
   },
   {
@@ -635,6 +635,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
