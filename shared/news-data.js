@@ -35,6 +35,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "中市托育資源不均 陳雅惠籲市府重視東南區困境",
+    desc: "點一下看更多",
+    date: "2025-09-16",
+    source: "新華報導",
+    categories: ["議會 / 政策","民生"],
+    href: "https://ccss3172.blogspot.com/2025/09/blog-post_334.html"
+  },
+  {
     title: "台中上半年國賠案99件 排水孔、坑洞、路樹最常出事",
     desc: "點一下看更多",
     date: "2025-09-04",
@@ -635,6 +643,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
