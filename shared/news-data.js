@@ -35,6 +35,22 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "安心午餐延宕　陳雅惠痛批市府行政怠惰",
+    desc: "點一下看更多",
+    date: "2025-10-02",
+    source: "聯合報／記者陳秋雲",
+    categories: ["議會 / 政策"],
+    href: "https://udn.com/news/story/6885/9045396"
+  },
+  {
+    title: "東區大小里差萬餘人 戶數不均 台中議員籲加速里鄰分家以利災害防救",
+    desc: "點一下看更多",
+    date: "2025-09-30",
+    source: "自由時報／記者蘇孟娟",
+    categories: ["議會 / 政策"],
+    href: "https://news.ltn.com.tw/news/politics/breakingnews/5196011?utm_medium=APP&utm_campaign=SHARE&utm_source=LINE"
+  },
+  {
     title: "中市托育資源不均 陳雅惠籲市府重視東南區困境",
     desc: "點一下看更多",
     date: "2025-09-16",
@@ -643,6 +659,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
