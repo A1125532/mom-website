@@ -35,6 +35,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "中市校園暴力年均逾200件　處理程序太久家長憂心",
+    desc: "點一下看更多",
+    date: "2025-10-03",
+    source: "中台灣時報／記者官達里",
+    categories: ["議會 / 政策","教育"],
+    href: "taiwancnews.com/archives/529720"
+  },
+  {
     title: "安心午餐延宕　陳雅惠痛批市府行政怠惰",
     desc: "點一下看更多",
     date: "2025-10-02",
@@ -659,6 +667,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
