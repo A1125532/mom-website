@@ -35,6 +35,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "台中人口破286萬 4-7月經濟弱勢兒少生活補助竟僅88人次",
+    desc: "點一下看更多",
+    date: "2025-10-15",
+    source: "自由時報／記者蘇孟娟",
+    categories: ["議會 / 政策"],
+    href: "https://news.ltn.com.tw/news/politics/breakingnews/5211695"
+  },
+  {
     title: "台中公托倍倍增挨批話術治理 議員：候補倍倍增逾4300人苦等",
     desc: "點一下看更多",
     date: "2025-10-13",
@@ -675,6 +683,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
