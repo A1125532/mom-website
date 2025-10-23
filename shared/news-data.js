@@ -20,7 +20,6 @@ window.SERVICE_DATA = [
 ];
 
 
-
 // 之後要新增公告→只要在這個陣列最後面加一個物件即可
 window.NEWS_DATA = [
   // 不可點連結的卡片
@@ -34,6 +33,22 @@ window.NEWS_DATA = [
   },*/
 
   // 可點連結的卡片
+  {
+    title: "「搖滾台中」蜂螫意外惹議　市議員陳雅惠等要求市府 全面檢討活動安全機制",
+    desc: "點一下看更多",
+    date: "2025-10-21",
+    source: "臺灣人民報／記者陳世宗",
+    categories: ["議會 / 政策"],
+    href: "https://www.peponews.tw/2025/10/21/231818/"
+  },
+  {
+    title: "市議員陳雅惠指傳產撐不下去！富市台中只是表面光鮮",
+    desc: "點一下看更多",
+    date: "2025-10-20",
+    source: "大宇宙新聞 民時新聞／記者張德欽、張珊瑜、張祐瑄、張耿慈、黃園淋",
+    categories: ["議會 / 政策","民生"],
+    href: "https://macrocosm.tw/%E5%B8%82%E8%AD%B0%E5%93%A1%E9%99%B3%E9%9B%85%E6%83%A0%E6%8C%87%E5%82%B3%E7%94%A2%E6%92%90%E4%B8%8D%E4%B8%8B%E5%8E%BB%EF%BC%81%E5%AF%8C%E5%B8%82%E5%8F%B0%E4%B8%AD%E5%8F%AA%E6%98%AF%E8%A1%A8%E9%9D%A2/"
+  },
   {
     title: "台中人口破286萬 4-7月經濟弱勢兒少生活補助竟僅88人次",
     desc: "點一下看更多",
@@ -56,7 +71,7 @@ window.NEWS_DATA = [
     date: "2025-10-03",
     source: "中台灣時報／記者官達里",
     categories: ["議會 / 政策","教育"],
-    href: "taiwancnews.com/archives/529720"
+    href: "https://www.taiwancnews.com/archives/529720"
   },
   {
     title: "安心午餐延宕　陳雅惠痛批市府行政怠惰",
@@ -683,12 +698,3 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
-
-
-
-
-
-
-
-
-
