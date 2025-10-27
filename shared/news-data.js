@@ -34,6 +34,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "萬聖節變裝出擊！小朋友討糖吃超可愛",
+    desc: "點一下看更多",
+    date: "2025-10-27",
+    source: "中臺灣時報／記者官達里",
+    categories: ["在地活動"],
+    href: "https://www.taiwancnews.com/archives/529911"
+  },
+  {
     title: "「搖滾台中」蜂螫意外惹議　市議員陳雅惠等要求市府 全面檢討活動安全機制",
     desc: "點一下看更多",
     date: "2025-10-21",
@@ -698,3 +706,4 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
