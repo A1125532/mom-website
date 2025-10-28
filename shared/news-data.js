@@ -34,6 +34,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "中市議員批市府道安改善作為成效不彰 小貨車成街頭「馬路殺手」",
+    desc: "點一下看更多",
+    date: "2025-10-28",
+    source: "自由時報／記者蘇金鳳",
+    categories: ["議會 / 政策"],
+    href: "https://news.ltn.com.tw/news/life/breakingnews/5226210?utm_medium=R&utm_campaign=SHARE&utm_source=LINE"
+  },
+  {
     title: "萬聖節變裝出擊！小朋友討糖吃超可愛",
     desc: "點一下看更多",
     date: "2025-10-27",
@@ -706,4 +714,5 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
