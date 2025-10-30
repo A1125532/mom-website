@@ -34,6 +34,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "標線僵化惹民怨！ 陳雅惠批交通局失能　要求年底前提「雙黃線調整計畫」",
+    desc: "點一下看更多",
+    date: "2025-10-29",
+    source: "臺灣人民報／記者陳世宗",
+    categories: ["議會 / 政策"],
+    href: "https://www.peponews.tw/2025/10/29/232534/"
+  },
+  {
     title: "中市議員批市府道安改善作為成效不彰 小貨車成街頭「馬路殺手」",
     desc: "點一下看更多",
     date: "2025-10-28",
@@ -714,5 +722,6 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
