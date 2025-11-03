@@ -34,6 +34,22 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "中市消防局禁調假令引發基層反彈 議員痛批麻木不仁",
+    desc: "點一下看更多",
+    date: "2025-11-03",
+    source: "自由時報／記者蘇金鳳",
+    categories: ["議會 / 政策"],
+    href: "https://news.ltn.com.tw/news/politics/breakingnews/5232680?utm_medium=APP&utm_campaign=SHARE&utm_source=LINE"
+  },
+  {
+    title: "市議員陳雅惠等痛批市府「自走砲」亂行動 黃國榮：要求各單位檢討通報與橫向協調機制",
+    desc: "點一下看更多",
+    date: "2025-11-03",
+    source: "臺灣人民報／記者陳世宗",
+    categories: ["議會 / 政策"],
+    href: "https://www.peponews.tw/2025/11/03/233003/"
+  },
+  {
     title: "標線僵化惹民怨！ 陳雅惠批交通局失能　要求年底前提「雙黃線調整計畫」",
     desc: "點一下看更多",
     date: "2025-10-29",
@@ -722,6 +738,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
