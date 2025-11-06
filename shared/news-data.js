@@ -34,6 +34,22 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "議員陳雅惠痛批防疫荒腔走板 中市副市長：依法追究相關責任",
+    desc: "點一下看更多",
+    date: "2025-11-06",
+    source: "自由時報／記者歐素美",
+    categories: ["議會 / 政策"],
+    href: "https://news.ltn.com.tw/news/politics/breakingnews/5236369?utm_medium=APP&utm_campaign=SHARE&utm_source=LINE"
+  },
+  {
+    title: "公園亂象叢生 中市議員要求全面檢討",
+    desc: "點一下看更多",
+    date: "2025-11-05",
+    source: "台灣好新聞／記者孫詩蘋",
+    categories: ["議會 / 政策"],
+    href: "https://tw.news.yahoo.com/%E5%85%AC%E5%9C%92%E4%BA%82%E8%B1%A1%E5%8F%A2%E7%94%9F-%E4%B8%AD%E5%B8%82%E8%AD%B0%E5%93%A1%E8%A6%81%E6%B1%82%E5%85%A8%E9%9D%A2%E6%AA%A2%E8%A8%8E-085600219.html"
+  },
+  {
     title: "中市消防局禁調假令引發基層反彈 議員痛批麻木不仁",
     desc: "點一下看更多",
     date: "2025-11-03",
@@ -738,6 +754,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
