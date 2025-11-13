@@ -34,6 +34,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "東區未來十年關鍵轉折  陳雅惠要求中市府補強交通配套規畫",
+    desc: "點一下看更多",
+    date: "2025-11-13",
+    source: "中華新聞雲／記者楊文琳",
+    categories: ["議會 / 政策"],
+    href: "https://www.cdns.com.tw/articles/1317626"
+  },
+  {
     title: "議員陳雅惠痛批防疫荒腔走板 中市副市長：依法追究相關責任",
     desc: "點一下看更多",
     date: "2025-11-06",
@@ -754,6 +762,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
