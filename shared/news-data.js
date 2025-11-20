@@ -34,6 +34,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "台中車站失控！街友回流嚴重　陳雅惠要求跨局處強勢介入",
+    desc: "點一下看更多",
+    date: "2025-11-20",
+    source: "中台灣時報／記者官達里",
+    categories: ["公共安全"],
+    href: "https://www.taiwancnews.com/archives/530199"
+  },
+  {
     title: "東區未來十年關鍵轉折  陳雅惠要求中市府補強交通配套規畫",
     desc: "點一下看更多",
     date: "2025-11-13",
@@ -762,6 +770,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
