@@ -34,6 +34,30 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "台中YouBike 2.0有站無車供需失衡 交通局：要求加強調度",
+    desc: "點一下看更多",
+    date: "2025-11-24",
+    source: "自由時報／記者蘇金鳳",
+    categories: ["議會 / 政策"],
+    href: "https://news.ltn.com.tw/news/life/breakingnews/5256109?utm_medium=APP&utm_campaign=SHARE&utm_source=LINE"
+  },
+  {
+    title: "獨居長者頻傳悲劇　陳雅惠促市府啟動跨局處整合與智慧守護網 避免悲劇再接二連三",
+    desc: "點一下看更多",
+    date: "2025-11-24",
+    source: "臺灣人民報／記者陳世宗",
+    categories: ["議會 / 政策"],
+    href: "https://www.peponews.tw/2025/11/24/234707/"
+  },
+  {
+    title: "中市公園成機車道？議員要求嚴格取締 盧秀燕：一定開罰",
+    desc: "點一下看更多",
+    date: "2025-11-24",
+    source: "自由時報／記者蘇金鳳",
+    categories: ["議會 / 政策"],
+    href: "https://news.ltn.com.tw/news/life/breakingnews/5255948?utm_medium=APP&utm_campaign=SHARE&utm_source=LINE"
+  },
+  {
     title: "台中車站失控！街友回流嚴重　陳雅惠要求跨局處強勢介入",
     desc: "點一下看更多",
     date: "2025-11-20",
@@ -770,6 +794,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
