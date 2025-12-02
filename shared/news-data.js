@@ -34,6 +34,22 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "中市交通罰鍰激增事故卻未減 議員陳雅惠要求市警局提改善証據",
+    desc: "點一下看更多",
+    date: "2025-12-01",
+    source: "民眾日報／記者諸葛志一",
+    categories: ["交通"],
+    href: "https://share.google/KiyJZxHZTUkwFFc9C"
+  },
+  {
+    title: "大台中轉運中心明年啟用+捷運藍線開工 議員憂交通動線混亂",
+    desc: "點一下看更多",
+    date: "2025-11-30",
+    source: "自由時報／記者蘇金鳳",
+    categories: ["交通"],
+    href: "https://news.ltn.com.tw/news/life/breakingnews/5262720?utm_medium=APP&utm_campaign=SHARE&utm_source=LINE"
+  },
+  {
     title: "台中YouBike 2.0有站無車供需失衡 交通局：要求加強調度",
     desc: "點一下看更多",
     date: "2025-11-24",
@@ -794,6 +810,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
