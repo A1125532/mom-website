@@ -34,6 +34,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "街友問題失控！陳雅惠怒轟市府消極管理、預算不透明　",
+    desc: "點一下看更多",
+    date: "2025-12-04",
+    source: "中台灣時報／記者官達里",
+    categories: ["議會 / 政策"],
+    href: "https://www.taiwancnews.com/archives/530292"
+  },
+  {
     title: "中市交通罰鍰激增事故卻未減 議員陳雅惠要求市警局提改善証據",
     desc: "點一下看更多",
     date: "2025-12-01",
@@ -810,6 +818,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
