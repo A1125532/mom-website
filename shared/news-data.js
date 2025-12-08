@@ -34,6 +34,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "守護市民安全 陳雅惠籲市府加速推廣CPR",
+    desc: "點一下看更多",
+    date: "2025-12-08",
+    source: "中台灣時報／記者官達里",
+    categories: ["議會 / 政策"],
+    href: "https://www.taiwancnews.com/archives/530313"
+  },
+  {
     title: "市議員陳雅惠：市府只會拖吊、收費，卻不擴增停車空間，讓停車政策原地踏步，市民每天都在受罪",
     desc: "點一下看更多",
     date: "2025-12-05",
@@ -826,6 +834,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
