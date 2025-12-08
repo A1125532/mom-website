@@ -34,7 +34,15 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
-    title: "街友問題失控！陳雅惠怒轟市府消極管理、預算不透明　",
+    title: "市議員陳雅惠：市府只會拖吊、收費，卻不擴增停車空間，讓停車政策原地踏步，市民每天都在受罪",
+    desc: "點一下看更多",
+    date: "2025-12-05",
+    source: "青傳媒／記者蘇詩鋒",
+    categories: ["議會 / 政策"],
+    href: "https://cag-news.com/archives/16420"
+  },
+  {
+    title: "街友問題失控！陳雅惠怒轟市府消極管理、預算不透明",
     desc: "點一下看更多",
     date: "2025-12-04",
     source: "中台灣時報／記者官達里",
@@ -818,6 +826,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
