@@ -34,6 +34,22 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "「欣欣向榮・傾聽市民心聲」座談會　陳雅惠、何欣純走進東區與市民面對面",
+    desc: "點一下看更多",
+    date: "2026-01-08",
+    source: "新華報導／記者葉羅傑",
+    categories: ["其他"],
+    href: "https://ccss3172.blogspot.com/2026/01/blog-post_908.html"
+  },
+  {
+    title: "陳雅惠肯定營養午餐免費：強調品質與安全絕不打折",
+    desc: "點一下看更多",
+    date: "2026-01-08",
+    source: "新華報導",
+    categories: ["教育"],
+    href: "https://ccss3172.blogspot.com/2026/01/blog-post_742.html"
+  },
+  {
     title: "守護市民安全 陳雅惠籲市府加速推廣CPR",
     desc: "點一下看更多",
     date: "2025-12-08",
@@ -834,6 +850,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
