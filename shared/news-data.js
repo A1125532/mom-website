@@ -34,6 +34,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "傾聽攤商困境　中市議員陳雅惠籲市府強化市場支持政策",
+    desc: "點一下看更多",
+    date: "2026-01-27",
+    source: "ETtoday新聞雲／記者游瓊華",
+    categories: ["民生"],
+    href: "https://www.ettoday.net/news/20260127/3108437.htm?from=pc-newsshare-line-fixed"
+  },
+  {
     title: "「欣欣向榮・傾聽市民心聲」座談會　陳雅惠、何欣純走進東區與市民面對面",
     desc: "點一下看更多",
     date: "2026-01-08",
@@ -850,6 +858,7 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
 
 
 
