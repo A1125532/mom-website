@@ -34,6 +34,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "中市議員陳雅惠辦植樹節贈苗活動吸引逾300人參與",
+    desc: "點一下看更多",
+    date: "2026-03-10",
+    source: "臺灣時報／記者鍾麗如",
+    categories: ["在地活動"],
+    href: "https://www.taiwantimes.com.tw/app-container/app-content/new/new-content-detail?blogId=blog-dfddc9c0-a123-49d6-bf00-ad21acb264f3&currentCategory=11"
+  },
+  {
     title: "傾聽攤商困境　中市議員陳雅惠籲市府強化市場支持政策",
     desc: "點一下看更多",
     date: "2026-01-27",
@@ -858,3 +866,4 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
+
