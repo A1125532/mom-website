@@ -34,6 +34,14 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "陳雅惠批臺中交通建設數字亮眼卻「無感」？ 市民還在等公車、卻借不到YouBike",
+    desc: "點一下看更多",
+    date: "2026-03-25",
+    source: "臺灣人民報／記者陳世宗",
+    categories: ["議會 / 政策","交通"],
+    href: "https://www.peponews.tw/?p=245784"
+  },
+  {
     title: "中市議員陳雅惠辦植樹節贈苗活動吸引逾300人參與",
     desc: "點一下看更多",
     date: "2026-03-10",
@@ -94,7 +102,7 @@ window.NEWS_DATA = [
     desc: "點一下看更多",
     date: "2025-12-01",
     source: "民眾日報／記者諸葛志一",
-    categories: ["交通"],
+    categories: ["議會 / 政策","交通"],
     href: "https://share.google/KiyJZxHZTUkwFFc9C"
   },
   {
@@ -866,4 +874,3 @@ window.NEWS_DATA = [
     href: "https://news.ltn.com.tw/news/politics/breakingnews/2739285"
   }
 ];
-
