@@ -34,6 +34,22 @@ window.NEWS_DATA = [
 
   // 可點連結的卡片
   {
+    title: "垃圾車晚3小時！台中清運大亂，陳雅惠痛批市府「只會分類，不會處理」！",
+    desc: "點一下看更多",
+    date: "2026-03-27",
+    source: "新華報導",
+    categories: ["議會 / 政策"],
+    href: "https://ccss3172.blogspot.com/2026/03/3_27.html"
+  },
+  {
+    title: "民進黨市議員陳雅惠質疑中市府每年投入35億元推動全面免費營養午餐政策 未說清品質、食安與配套機制 恐犧牲孩子的飲食安全與健康",
+    desc: "點一下看更多",
+    date: "2026-03-26",
+    source: "元丰傳媒／記者林獻元",
+    categories: ["議會 / 政策","教育"],
+    href: "https://www.yuanfengmedia.tw/detail.php?type=lastest&id=54043"
+  },
+  {
     title: "陳雅惠批臺中交通建設數字亮眼卻「無感」？ 市民還在等公車、卻借不到YouBike",
     desc: "點一下看更多",
     date: "2026-03-25",
